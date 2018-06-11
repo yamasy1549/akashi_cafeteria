@@ -1,2 +1,5 @@
 .env
+tmp
 postgres-data
+
+*.cache
