@@ -94,5 +94,15 @@ $ initdb /usr/local/var/postgres -E utf8
 $ postgres &
 
 # 本番サーバと同じ初期状態にする
-$ ./bin/createdb.sh
+$ ./bin/export.sh && psql -d postgres -f postgres/createdb.sql
+```
+
+```
+# テーブルを作る
+$ ./bin/export.sh && psql -d $DB_NAME -f ./postgres/createtable.sql
+```
+
+```
+# テストデータを追加する
+$ ./bin/export.sh && psql -d $DB_NAME -f ./postgres/addtestdata.sql
 ```
