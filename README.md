@@ -82,3 +82,17 @@ $ ./bin/lint.sh --diff --diff-format udiff --dry-run
 現在はデフォルトのルールを使用していますが、`.php_cs.dist` ファイルに独自のルールを書いて適用することも可能です。
 
 ref: http://fivestar.hatenablog.com/entry/2017/03/30/233744
+
+## PostgreSQL
+
+インストールしたら、環境にもよるけど大体こんな感じで初期設定をします。
+
+```
+$ initdb /usr/local/var/postgres -E utf8
+
+# 起動
+$ postgres &
+
+# 本番サーバと同じ初期状態にする
+$ ./bin/createdb.sh
+```

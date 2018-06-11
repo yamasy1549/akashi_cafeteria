@@ -1,7 +1,7 @@
 <?php
-  $dsn = 'pgsql:dbname='.$_ENV['DBNAME'].';host='.$_ENV['DBHOST'].';port='.$_ENV['DBPORT'].';';
-  $user = $_ENV['DBUSER'];
-  $password = $_ENV['DBPASS'];
+  $dsn = 'pgsql:dbname='.$_ENV['DB_NAME'].';host='.$_ENV['DB_HOST'].';port='.$_ENV['DB_PORT'].';';
+  $user = $_ENV['DB_USER'];
+  $password = $_ENV['DB_PASS'];
 
   try {
       $dbh = new PDO($dsn, $user, $password);
