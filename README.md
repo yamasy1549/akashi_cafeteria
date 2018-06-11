@@ -36,23 +36,19 @@
 ```
 .
 ├── README.md
-├── bin                       // 手元で実行するシェルスクリプトなど
+├── bin                   // 手元で実行するシェルスクリプトなど
 │   └── lint.sh
-├── docker                    // Dockerで使うファイル。変更の可能性大
-│   ├── php
-│   │   ├── Dockerfile
-│   │   └── php.ini
-│   └── postgres
-│       ├── *.sql
-│       ├── Dockerfile
-│       ├── createdb.sql
-│       ├── pg_hba.conf
-│       └── postgresql.conf
-├── docker-compose.yml
-├── postgres-data             // PostgreSQLのデータが入る。基本的に編集しないしGit管理もしない
-├── public_html               // PHPのファイル群。だいたいここを編集する
+├── etc
+│   └── php.ini
+├── postgres
+│   └── createdb.sql
+├── postgres-data         // PostgreSQLのデータが入る。基本的に編集しないしGit管理もしない
+├── public_html           // PHPのファイル群。だいたいここを編集する
 │   └── index.php
-└── tests                     // PHPのソースコードのテストを置く
+├── tests                 // PHPのソースコードのテストを置く
+├── .env                  // 環境変数
+└── .gitignore            // Git管理しないファイルのリスト
+
 ```
 
 MVCぽくしたいなぁと思うので `public_html/` 以下はファイル数が多くなりそう。
