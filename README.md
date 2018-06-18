@@ -106,3 +106,12 @@ $ export $(cat .env) && psql -d $DB_NAME -f ./postgres/createtable.sql
 # テストデータを追加する
 $ export $(cat .env) && psql -d $DB_NAME -f ./postgres/addtestdata.sql
 ```
+
+## PHP
+
+```
+# 起動
+$ export $(cat .env) &&  php -S 127.0.0.1:8080 -t public_html
+
+# ブラウザで localhost:8080 を開く
+```
