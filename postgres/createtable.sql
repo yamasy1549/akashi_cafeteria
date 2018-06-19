@@ -34,7 +34,7 @@ create table menu (
     category_id integer references category(category_id) not null,
     name        text not null,
     price       integer not null,
-    image       text not null
+    image       text
 );
 
 create table evaluation (
