@@ -94,15 +94,24 @@ $ initdb /usr/local/var/postgres -E utf8
 $ postgres &
 
 # 本番サーバと同じ初期状態にする
-$ ./bin/export.sh && psql -d postgres -f postgres/createdb.sql
+$ export $(cat .env) && psql -d postgres -f postgres/createdb.sql
 ```
 
 ```
 # テーブルを作る
-$ ./bin/export.sh && psql -d $DB_NAME -f ./postgres/createtable.sql
+$ export $(cat .env) && psql -d $DB_NAME -f ./postgres/createtable.sql
 ```
 
 ```
 # テストデータを追加する
-$ ./bin/export.sh && psql -d $DB_NAME -f ./postgres/addtestdata.sql
+$ export $(cat .env) && psql -d $DB_NAME -f ./postgres/addtestdata.sql
+```
+
+## PHP
+
+```
+# 起動
+$ export $(cat .env) &&  php -S 127.0.0.1:8080 -t public_html
+
+# ブラウザで localhost:8080 を開く
 ```

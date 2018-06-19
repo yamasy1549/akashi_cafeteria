@@ -6,10 +6,9 @@
   try {
       $dbh = new PDO($dsn, $user, $password);
 
-      $sql = 'select * from item';
+      $sql = 'select * from public.user';
       foreach ($dbh->query($sql) as $row) {
-          print($row['id']);
-          print($row['name'].'<br>');
+          print($row['id'] . ': '. $row['email'] . '<br>');
       }
   } catch (PDOException $e) {
       print('Connection failed:'.$e->getMessage());
