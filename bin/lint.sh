@@ -1,5 +1,5 @@
 if [ `which php-cs-fixer` ]; then
-    php-cs-fixer fix public_html/*.php $*
+    php-cs-fixer fix public_html $*
 else
     echo 'Command `php-cs-fixer` is not found.'
     echo 'Please install.'
