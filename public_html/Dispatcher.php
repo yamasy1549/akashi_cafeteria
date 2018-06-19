@@ -30,8 +30,8 @@ class Dispatcher
 
         $params = array();
         if ($param != '') {
-            // パラメータを/で分割
-            $params = explode('/', $param);
+            // パラメータを/, ?で分割
+            $params = preg_split('/[\/\?]/', $param);
         }
 
         // Controller特定
