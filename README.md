@@ -36,19 +36,40 @@
 ```
 .
 ├── README.md
-├── bin                   // 手元で実行するシェルスクリプトなど
+├── bin                             // 手元で実行するシェルスクリプトなど
 │   └── lint.sh
-├── etc
+├── etc                             // 設定ファイルなど
 │   └── php.ini
-├── postgres
-│   └── createdb.sql
-├── postgres-data         // PostgreSQLのデータが入る。基本的に編集しないしGit管理もしない
-├── public_html           // PHPのファイル群。だいたいここを編集する
-│   └── index.php
-├── tests                 // PHPのソースコードのテストを置く
-├── .env                  // 環境変数
-└── .gitignore            // Git管理しないファイルのリスト
+├── postgres                        // DBに関するスクリプトなど
+│   ├── addtestdata.sql
+│   ├── createdb.sql
+│   └── createtable.sql
+├── postgres-data                   // PostgreSQLのデータが入る（無視）
+├── public_html                     // PHPのファイル群。だいたいここを編集する
+│   ├── Dispatcher.php              // リクエストURLに応じてどのコントローラで処理するかを振り分ける
+│   ├── Post.php
+│   ├── QueryString.php
+│   ├── Request.php
+│   ├── RequestVariables.php
+│   ├── controllers                 // 【コントローラ】ユーザの操作とモデルをつなぐ処理を書くところ
+│   │   └── CategoryController.php
+│   ├── index.php                   // 起点。すべて最初はここにアクセスされる
+│   ├── models                      // 【モデル】DBと接続してデータをやりとりするところ
+│   │   ├── BaseModel.php
+│   │   └── Category.php
+│   ├── templates_c                 // Smartyのコンパイル後のファイルが入る（無視）
+│   └── views                       // 【ビュー】モデルのデータをユーザに見せるところ
+│       ├── category
+│       │   └── index.tpl
+│       ├── smarty                  // Smartyのライブラリ本体のファイル（無視）
+│       └── templates               // 共通で使う部分的なView
+│           ├── footer.tpl
+│           └── header.tpl
+├── tests                           // PHPのソースコードのテストを置く
+├── .env                            // 環境変数
+└── .gitignore                      // Git管理しないファイルのリスト
 
+14 directories, 227 files
 ```
 
 MVCぽくしたいなぁと思うので `public_html/` 以下はファイル数が多くなりそう。
