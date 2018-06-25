@@ -51,14 +51,14 @@
 │   ├── QueryString.php
 │   ├── Request.php
 │   ├── RequestVariables.php
-│   ├── controllers                 // 【コントローラ】ユーザの操作とモデルをつなぐ処理を書くところ
+│   ├── controllers                 // 【MVC:コントローラ】
 │   │   └── CategoryController.php
 │   ├── index.php                   // 起点。すべて最初はここにアクセスされる
-│   ├── models                      // 【モデル】DBと接続してデータをやりとりするところ
+│   ├── models                      // 【MVC:モデル】
 │   │   ├── BaseModel.php
 │   │   └── Category.php
 │   ├── templates_c                 // Smartyのコンパイル後のファイルが入る（無視）
-│   └── views                       // 【ビュー】モデルのデータをユーザに見せるところ
+│   └── views                       // 【MVC:ビュー】
 │       ├── category
 │       │   └── index.tpl
 │       ├── smarty                  // Smartyのライブラリ本体のファイル（無視）
@@ -72,7 +72,24 @@
 14 directories, 227 files
 ```
 
-MVCぽくしたいなぁと思うので `public_html/` 以下はファイル数が多くなりそう。
+## MVCぽい感じでやっていきたい
+
+### とは？
+
+デザインパターン（先人たちの編み出した設計ノウハウをまとめたもの）の一つ。
+
+ざっくり言うと、ユーザが直接DBに触ってデータを参照・編集するのを避けたいための構成。
+
+MVCそれぞれの中では、各要素の役割のみに集中して処理を行う。例えば、コントローラ内でDBと直接接続したりしない（これはモデルの責務）。
+
+### 実際の構成
+
+- **モデル(Model)** : DBと接続してデータをやりとりするところ。基本的にDBのテーブルと1対1
+- **ビュー(View)** : モデルのデータをユーザに見せるところ。基本的にモデルと1対1になるディレクトリを作って、コントローラのアクション毎にファイル（ページ）を作る
+- **コントローラ(Controller)** : ユーザの操作とモデルをつなぐ処理を書くところ。基本的にモデルと1対1
+
+↓は Ruby on Rails での MVC の説明、今回と大きくは変わらない
+ref : https://www.rubylife.jp/rails/ini/index7.html
 
 ## Lint
 
