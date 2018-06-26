@@ -147,7 +147,7 @@ $ export $(cat .env) && psql -d $DB_NAME -f ./postgres/addtestdata.sql
 
 ```
 # テーブルを削除する
-$ export $(cat .env) && psql -d $DB_NAME -f ./postgres/createtable.sql
+$ export $(cat .env) && psql -d $DB_NAME -f ./postgres/deletetable.sql
 ```
 
 ## PHP
