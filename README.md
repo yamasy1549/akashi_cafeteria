@@ -145,6 +145,11 @@ $ export $(cat .env) && psql -d $DB_NAME -f ./postgres/createtable.sql
 $ export $(cat .env) && psql -d $DB_NAME -f ./postgres/addtestdata.sql
 ```
 
+```
+# テーブルを削除する
+$ export $(cat .env) && psql -d $DB_NAME -f ./postgres/createtable.sql
+```
+
 ## PHP
 
 ```
@@ -152,4 +157,77 @@ $ export $(cat .env) && psql -d $DB_NAME -f ./postgres/addtestdata.sql
 $ export $(cat .env) &&  php -S 127.0.0.1:8080 -t public_html
 
 # ブラウザで localhost:8080 を開く
+```
+
+## コマンド一覧
+### ターミナル上のコマンド
+
+・ローカルからサーバへファイルを送る
+```
+scp -r [送るフォルダのパス] team2@172.16.16.7:[転送場所のパス](入力なしでsshサーバ直下に送る.:は必要)
+```
+
+・サーバからローカルにファイルダウンロード
+```
+scp -r team2@172.16.16.7:[送るフォルダのパス]　[転送場所のパス]
+```
+
+・sshサーバにアクセス
+```
+ssh team2@172.16.16.7
+```
+
+### PostgreSQL上のコマンド
+
+・データベース内のテーブルを見る
+psql上で
+```
+\d
+```
+
+・各テーブル内の欄と変数の型を確認する
+psql上で
+```
+\d テーブル名
+```
+
+・PostgreSQLを終了する
+psql上で
+```
+\q
+```
+・テーブル内のデータを一覧
+psql上で
+```
+select * from テーブル名;
+```
+(userテーブルは"user"と入力することに注意)
+
+### SSH上のコマンド
+
+・SQLファイルの実行
+sshサーバ上で
+```
+psql -d {データベース名} -U {ユーザ名} -f {ファイル名}
+```
+
+テーブル全生成(実行するパスが~/postgres$ の場合)
+```
+psql -d team2db -U team2 -f createtable.sql
+```
+
+テストデータの追加
+```
+psql -d team2db -U team2 -f addtestdata.sql
+```
+
+テーブル全削除
+```
+psql -d team2db -U team2 -f deletetable.sql
+```
+
+・データベース起動
+sshサーバ上で
+```
+psql team2db
 ```
