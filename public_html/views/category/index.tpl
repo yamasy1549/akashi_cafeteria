@@ -2,9 +2,13 @@
 
 {include file='../templates/header.tpl' icon='tag' title='カテゴリ一覧'}
 
-<ul>
+<ul class='category-list'>
   {foreach from=$categories item=category}
-  <li>{$category.name}</li>
+    <li class='category-list__item'>
+      <span class='category-list__item--name'>{$category.name}</span>
+      <a class='category-list__item--edit' href='./?controller=category&action=edit'><i class='fas fa-pencil-alt'></i></a>
+      <a class='category-list__item--destroy' href='./?controller=category&action=destroy'><i class='fas fa-trash-alt'></i></a>
+    </li>
   {/foreach}
 </ul>
 
