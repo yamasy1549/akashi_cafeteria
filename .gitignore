@@ -3,3 +3,6 @@ tmp
 postgres-data
 public_html/templates_c/*
 *.cache
+node_modules
+styles
+!styles/index.css
