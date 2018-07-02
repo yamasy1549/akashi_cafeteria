@@ -1,5 +1,5 @@
 .env
 tmp
 postgres-data
-templates_c
+public_html/templates_c/*
 *.cache
