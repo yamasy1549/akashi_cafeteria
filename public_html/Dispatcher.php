@@ -21,22 +21,24 @@ class Dispatcher
      *
      * @see Dispatcher::getClassName
      * @see Dispatcher::getActionMethod
-     * @see Dispatcher::generatecontrollerInstance
+     * @see Dispatcher::generateControllerInstance
      */
     public function dispatch()
     {
-        // パラメータ取得、末尾の/を削除
-        $param = preg_replace('/\/?$/', '', $_SERVER['REQUEST_URI']);
+        // パラメータ取得、整形
+        // `http://172.16.16.7/team2/?controller=category&action=index`
+        // みたいな形でリクエストされる
+        $param = preg_replace('/\/team2\/\?/', '', $_SERVER['REQUEST_URI']);
 
         $params = array();
         if ($param != '') {
-            // パラメータを/, ?で分割
-            $params = preg_split('/[\/\?]/', $param);
+            // パラメータを=と&で分割
+            $params = preg_split('/[=&]/', $param);
         }
 
         // Controller特定
         $className = $this->getClassName($params);
-        $controllerInstance = $this->generatecontrollerInstance($className);
+        $controllerInstance = $this->generateControllerInstance($className);
 
         // ControllerのActionを呼ぶ
         $actionMethod = $this->getActionMethod($params);
@@ -68,7 +70,7 @@ class Dispatcher
         $controller = "index";
 
         // パラメータの1番目がController
-        if (0 < count($params)) {
+        if (0 < count($params) && $params[0] == "controller") {
             $controller = $params[1];
         }
 
@@ -88,9 +90,9 @@ class Dispatcher
         // デフォルトではindexAction
         $action = "index";
 
-        // パラメータの2番目がAction
-        if (0 < count($params)) {
-            $action = $params[2];
+        // パラメータの3番目がAction
+        if (0 < count($params) && $params[2] == "action") {
+            $action = $params[3];
         }
 
         $actionMethod = $action . 'Action';
