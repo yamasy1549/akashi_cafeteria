@@ -15,7 +15,7 @@ class Category extends BaseModel
     }
 
     /**
-    * DBから取得
+    * DBから取得（全部）
     */
     public function getCategories()
     {
@@ -23,6 +23,19 @@ class Category extends BaseModel
         $sql = sprintf('select * from %s', $this->model_name);
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
+
+        return $result;
+    }
+
+    /**
+    * DBから取得（一部）
+    */
+    public function getCategory($category_id)
+    {
+        // TODO: セキュリティ対策
+        $sql = sprintf('select * from %s where category_id = %s', $this->model_name, $category_id);
+        $stmt = $this->db->query($sql);
+        $result = $stmt->fetch();
 
         return $result;
     }
