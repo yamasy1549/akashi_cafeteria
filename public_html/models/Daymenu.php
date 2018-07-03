@@ -60,7 +60,7 @@ class Daymenu extends BaseModel
     {
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf("insert into %s (name) values ('%s')", $this->model_name, $params['name']);
+        $sql = sprintf("insert into %s (daymenu_id, name, price, image) values ('%s', '%s', '%s', '%s')", $this->model_name, $params['daymenu_id'], $params['name'], $params['price'], $params['image']);
         $res = $this->db->query($sql);
     }
 
