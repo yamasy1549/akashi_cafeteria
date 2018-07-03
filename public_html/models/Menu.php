@@ -20,9 +20,23 @@ class Menu extends BaseModel
     public function getMenus()
     {
         // TODO: セキュリティ対策
-        $sql = sprintf('select * from %s where menu_id = %s', $this->model_name, $params['category_id'], $params['name'], $params['price'], $params['image']);
+        $sql = sprintf('select * from %s', $this->model_name);
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
+
+        return $result;
+    }
+
+    /**
+    * DBから取得（一部）
+    */
+    public function getMenu($category_id)
+    {
+        // TODO: セキュリティ対策
+        // TODO: エラーハンドリング
+        $sql = sprintf('select * from %s where menu_id = %s', $this->model_name, $menu_id);
+        $stmt = $this->db->query($sql);
+        $result = $stmt->fetch();
 
         return $result;
     }
@@ -34,7 +48,7 @@ class Menu extends BaseModel
     {
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf("update %s set name = '%s' where menu_id = %s", $this->model_name, $params['name'], $params['menu_id']);
+        $sql = sprintf("update %s set name = '%s' where menu_id = %s", $this->model_name, $menu_id);
         $res = $this->db->query($sql);
     }
 
@@ -56,7 +70,7 @@ class Menu extends BaseModel
     public function destroy($userId)
     {
         // TODO: セキュリティ対策
-        $sql = sprintf('delete from %s where menu_id = %s', $this->model_name, $params['category_id'], $params['name'], $params['price'], $params['image']);
+        $sql = sprintf('delete from %s where menu_id = %s', $this->model_name, $params['menu_id']);
         $res = $this->db->query($sql);
 
         return $res;
