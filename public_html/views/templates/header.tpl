@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang='ja'>
 <head>
-  <title>{$title}</title>
+  <title>
+    {$title}
+    {if strlen($action) > 0}
+      {$action}
+    {/if}
+  </title>
 
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
@@ -16,7 +21,13 @@
   <header class='global-header'>
     <h1 class='global-header__title'>
       <i class='global-header__title--icon fas fa-{$icon}'></i>
-      <span class='global-header__title--string'>{$title}</span>
+      <span class='global-header__title--string'>
+        {$title}
+        {if strlen($action) > 0}
+          <i class='fas fa-caret-right global-header__title--string--separator'></i>
+          {$action}
+        {/if}
+      </span>
     </h1>
   </header>
   <main class='global-main'>
