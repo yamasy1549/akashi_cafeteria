@@ -41,6 +41,17 @@ class Category extends BaseModel
     }
 
     /**
+    * データ更新
+    */
+    public function update($params)
+    {
+        // TODO: セキュリティ対策
+        // TODO: エラーハンドリング
+        $sql = sprintf("update %s set name = '%s' where category_id = %s", $this->model_name, $params['name'], $params['category_id']);
+        $res = $this->db->query($sql);
+    }
+
+    /**
     * データ追加
     */
     public function create($userId)

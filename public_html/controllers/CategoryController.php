@@ -7,6 +7,7 @@ require_once './views/smarty/Smarty.class.php';
 class CategoryController
 {
     private $view;
+    private $request;
     private $model;
 
     /**
@@ -16,6 +17,8 @@ class CategoryController
     {
         $this->view = new Smarty();
         $this->view->template_dir = '../view/templates';
+
+        $this->request = new Request();
 
         $this->model = new Category();
     }
@@ -39,8 +42,7 @@ class CategoryController
      */
     public function editAction()
     {
-        $request = new Request();
-        $params = $request->getQuery();
+        $params = $this->request->getQuery();
         $category = $this->model->getCategory($params['category_id']);
 
         // テンプレートへ変数割り当て
@@ -48,5 +50,19 @@ class CategoryController
 
         // テンプレート表示
         $this->view->display('./views/category/edit.tpl');
+    }
+
+    /**
+     * update
+     */
+    public function updateAction()
+    {
+        $params = $this->request->getPost();
+
+        $this->model->update($params);
+
+        // カテゴリ一覧へリダイレクト
+        header('Location: ./?controller=category&action=index');
+        exit();
     }
 }
