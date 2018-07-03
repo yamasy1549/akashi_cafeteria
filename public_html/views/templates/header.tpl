@@ -3,7 +3,7 @@
 <head>
   <title>
     {$title}
-    {if strlen($action) > 0}
+    {if !is_null($action)}
       {$action}
     {/if}
   </title>
@@ -23,7 +23,7 @@
       <i class='global-header__title--icon fas fa-{$icon}'></i>
       <span class='global-header__title--string'>
         {$title}
-        {if strlen($action) > 0}
+        {if !is_null($action)}
           <i class='fas fa-caret-right global-header__title--string--separator'></i>
           {$action}
         {/if}
