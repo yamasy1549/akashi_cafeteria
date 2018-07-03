@@ -28,10 +28,10 @@ class EvaluationController
      */
     public function indexAction()
     {
-        $categories = $this->model->getCategories();
+        $evaluations = $this->model->getEvaluations();
 
         // テンプレートへ変数割り当て
-        $this->view->assign('categories', $evaluations);
+        $this->view->assign('evaluations', $evaluations);
         $this->view->assign('button_action', 'controller=evaluation&action=new');
         $this->view->assign('button_name', '評価追加');
 
