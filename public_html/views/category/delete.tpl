@@ -2,7 +2,7 @@
 
 {include file='../templates/header.tpl' icon='tag' title='カテゴリ管理' action='削除'}
 
-<p>カテゴリ「{$category.name}」を削除しますか？</p>
+<p class='delete-notice'>カテゴリ「{$category.name}」を削除しますか？</p>
 
 <form class='form' action='?controller=category&action=destroy' method='post'>
   {* ユーザに変更されると困るが、変更に必要な情報なのでhiddenにしておく *}
