@@ -17,7 +17,7 @@ class Evaluation extends BaseModel
     /**
     * DBから取得（全部）
     */
-    public function getEvalations()
+    public function getEvaluations()
     {
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
