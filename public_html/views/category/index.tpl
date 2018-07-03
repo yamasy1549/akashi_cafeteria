@@ -12,4 +12,4 @@
   {/foreach}
 </ul>
 
-{include file='../templates/footer.tpl'}
+{include file='../templates/footer.tpl' button_action=$button_action}

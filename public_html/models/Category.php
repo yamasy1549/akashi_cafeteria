@@ -54,13 +54,12 @@ class Category extends BaseModel
     /**
     * データ追加
     */
-    public function create($userId)
+    public function create($params)
     {
         // TODO: セキュリティ対策
-        $sql = sprintf('insert into %s (name) values %s', $this->model_name, $name);
+        // TODO: エラーハンドリング
+        $sql = sprintf("insert into %s (name) values ('%s')", $this->model_name, $params['name']);
         $res = $this->db->query($sql);
-
-        return $res;
     }
 
     /**

@@ -32,9 +32,38 @@ class CategoryController
 
         // テンプレートへ変数割り当て
         $this->view->assign('categories', $categories);
+        $this->view->assign('button_action', 'controller=category&action=new');
+        $this->view->assign('button_name', 'カテゴリ追加');
 
         // テンプレート表示
         $this->view->display('./views/category/index.tpl');
+    }
+
+    /**
+     * new
+     */
+    public function newAction()
+    {
+        // テンプレートへ変数割り当て
+        $this->view->assign('button_action', 'controller=category&action=new');
+        $this->view->assign('button_name', 'カテゴリ追加');
+
+        // テンプレート表示
+        $this->view->display('./views/category/new.tpl');
+    }
+
+    /**
+     * create
+     */
+    public function createAction()
+    {
+        $params = $this->request->getPost();
+
+        $this->model->create($params);
+
+        // カテゴリ一覧へリダイレクト
+        header('Location: ./?controller=category&action=index');
+        exit();
     }
 
     /**
@@ -47,6 +76,8 @@ class CategoryController
 
         // テンプレートへ変数割り当て
         $this->view->assign('category', $category);
+        $this->view->assign('button_action', 'controller=category&action=new');
+        $this->view->assign('button_name', 'カテゴリ追加');
 
         // テンプレート表示
         $this->view->display('./views/category/edit.tpl');
