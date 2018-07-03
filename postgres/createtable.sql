@@ -31,7 +31,7 @@ create table category (
 
 create table menu (
     menu_id     serial primary key,
-    category_id integer references category(category_id) not null,
+    category_id integer references category(category_id) on delete cascade not null,
     name        text not null,
     price       integer not null,
     image       text
@@ -39,8 +39,8 @@ create table menu (
 
 create table evaluation (
     evaluation_id    serial primary key,
-    user_id          integer references "user"(user_id) not null,
-    menu_id          integer references menu(menu_id) not null,
+    user_id          integer references "user"(user_id) on delete cascade not null,
+    menu_id          integer references menu(menu_id) on delete cascade not null,
     data             integer not null
 );
 
@@ -48,7 +48,7 @@ create table evaluation (
 create table daymenu (
     daymanu_id    serial primary key,
     date          date not null,
-    menu_id       integer references menu(menu_id) not null,
+    menu_id       integer references menu(menu_id) on delete cascade not null,
     sale          boolean default true not null,
-    evaluation_id integer references evaluation(evaluation_id) not null
+    evaluation_id integer references evaluation(evaluation_id) on delete cascade not null
 );
