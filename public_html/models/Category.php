@@ -20,6 +20,7 @@ class Category extends BaseModel
     public function getCategories()
     {
         // TODO: セキュリティ対策
+        // TODO: エラーハンドリング
         $sql = sprintf('select * from %s', $this->model_name);
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
@@ -33,6 +34,7 @@ class Category extends BaseModel
     public function getCategory($category_id)
     {
         // TODO: セキュリティ対策
+        // TODO: エラーハンドリング
         $sql = sprintf('select * from %s where category_id = %s', $this->model_name, $category_id);
         $stmt = $this->db->query($sql);
         $result = $stmt->fetch();
@@ -65,12 +67,11 @@ class Category extends BaseModel
     /**
     * データ削除
     */
-    public function destroy($userId)
+    public function destroy($params)
     {
         // TODO: セキュリティ対策
-        $sql = sprintf('delete from %s where %s', $this->model_name, $name);
+        // TODO: エラーハンドリング
+        $sql = sprintf('delete from %s where category_id = %s', $this->model_name, $params['category_id']);
         $res = $this->db->query($sql);
-
-        return $res;
     }
 }

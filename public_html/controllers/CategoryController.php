@@ -96,4 +96,35 @@ class CategoryController
         header('Location: ./?controller=category&action=index');
         exit();
     }
+
+    /**
+     * delete
+     */
+    public function deleteAction()
+    {
+        $params = $this->request->getQuery();
+        $category = $this->model->getCategory($params['category_id']);
+
+        // テンプレートへ変数割り当て
+        $this->view->assign('category', $category);
+        $this->view->assign('button_action', 'controller=category&action=new');
+        $this->view->assign('button_name', 'カテゴリ追加');
+
+        // テンプレート表示
+        $this->view->display('./views/category/delete.tpl');
+    }
+
+    /**
+     * destroy
+     */
+    public function destroyAction()
+    {
+        $params = $this->request->getPost();
+
+        $this->model->destroy($params);
+
+        // カテゴリ一覧へリダイレクト
+        header('Location: ./?controller=category&action=index');
+        exit();
+    }
 }
