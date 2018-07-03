@@ -1,10 +1,14 @@
 {* title= のように変数でテンプレートの中身を変更可能 *}
 
-{include file='../templates/header.tpl' icon='calendar' title='メニュー一覧'}
+{include file='../templates/header.tpl' title='メニュー一覧'}
 
-<ul>
+<ul class='menu-list'>
   {foreach from=$menus item=menu}
-    <li>{$menu.category}, {$menu.name}, {$menu.price}, {$menu.image}</li>
+    <li class='menu-list__item'>
+      <span class='menu-list__item--name'>{$menu.name}</span>
+      <a class='menu-list__item--edit' href='./?controller=menu&action=edit'><i class='fas fa-pencil-alt'></i></a>
+      <a class='menu-list__item--destroy' href='./?controller=menu&action=destroy'><i class='fas fa-trash-alt'></i></a>
+    </li>
   {/foreach}
 </ul>
 
