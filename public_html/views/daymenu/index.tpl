@@ -1,6 +1,6 @@
 {* title= のように変数でテンプレートの中身を変更可能 *}
 
-{include file='../templates/header.tpl' icon='tag' title='日毎メニュー一覧' action='管理'}
+{include file='../templates/header.tpl' title='日毎メニュー' action='一覧'}
 
 <ul class='menu-list'>
   {foreach from=$daymenus item=daymenu}

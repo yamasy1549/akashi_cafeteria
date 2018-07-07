@@ -1,6 +1,6 @@
 {* title= のように変数でテンプレートの中身を変更可能 *}
 
-{include file='../templates/header.tpl' icon='tag' title='評価一覧' action='管理'}
+{include file='../templates/header.tpl' title='評価' action='一覧'}
 
 <ul class='evaluation-list'>
   {foreach from=$evaluations item=evaluation}

@@ -1,6 +1,6 @@
 {* title= のように変数でテンプレートの中身を変更可能 *}
 
-{include file='../templates/header.tpl' icon='tag' title='カテゴリ管理' action='削除'}
+{include file='../templates/header.tpl' title='カテゴリ' action='削除'}
 
 <p class='delete-notice'>カテゴリ「{$category.name}」を削除しますか？</p>
 

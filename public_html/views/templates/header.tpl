@@ -22,11 +22,9 @@
   <main class='global-main'>
     <header class='global-header'>
       <h1 class='global-header__title'>
-        <i class='global-header__title--icon fas fa-{$icon}'></i>
         <span class='global-header__title--string'>
           {$title}
           {if !is_null($action)}
-            <i class='fas fa-caret-right global-header__title--string--separator'></i>
             {$action}
           {/if}
         </span>

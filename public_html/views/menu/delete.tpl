@@ -1,6 +1,6 @@
 {* title= のように変数でテンプレートの中身を変更可能 *}
 
-{include file='../templates/header.tpl' icon='tag' title='メニュー管理' action='削除'}
+{include file='../templates/header.tpl' title='メニュー' action='削除'}
 
 <p>メニュー「{$menu.name}」を削除しますか？</p>
 
