@@ -5,8 +5,6 @@ require_once './models/Menu.php';
 
 class MenuController extends BaseController
 {
-    private $view;
-    private $request;
     private $model;
 
     /**
