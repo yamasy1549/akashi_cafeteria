@@ -1,13 +1,10 @@
 <?php
 
-require_once './Request.php';
+require_once './controllers/BaseController.php';
 require_once './models/Evaluation.php';
-require_once './views/smarty/Smarty.class.php';
 
-class EvaluationController
+class EvaluationController extends BaseController
 {
-    private $view;
-    private $request;
     private $model;
 
     /**
@@ -15,10 +12,7 @@ class EvaluationController
      */
     public function __construct()
     {
-        $this->view = new Smarty();
-        $this->view->template_dir = '../view/templates';
-
-        $this->request = new Request();
+        parent::__construct();
 
         $this->model = new Evaluation();
     }

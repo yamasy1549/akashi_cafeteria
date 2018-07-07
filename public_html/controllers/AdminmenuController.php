@@ -1,19 +1,15 @@
 <?php
 
-require_once './Request.php';
-require_once './views/smarty/Smarty.class.php';
+require_once './controllers/BaseController.php';
 
-class AdminmenuController
+class AdminmenuController extends BaseController
 {
-    private $view;
-
     /**
      * コンストラクタ
      */
     public function __construct()
     {
-        $this->view = new Smarty();
-        $this->view->template_dir = '../view/templates';
+        parent::__construct();
     }
 
     /**
