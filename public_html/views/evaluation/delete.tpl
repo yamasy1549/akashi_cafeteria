@@ -2,7 +2,7 @@
 
 {include file='../templates/header.tpl' icon='tag' title='評価管理' action='削除'}
 
-<p>評価「{$evaluation.name}」を削除しますか？</p>
+<p>評価「{$evaluation.menu_name}（評価：{$evaluation.data}）」を削除しますか？</p>
 
 <form class='form' action='?controller=evaluation&action=destroy' method='post'>
   {* ユーザに変更されると困るが、変更に必要な情報なのでhiddenにしておく *}

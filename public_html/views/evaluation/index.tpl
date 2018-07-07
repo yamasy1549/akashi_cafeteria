@@ -5,7 +5,9 @@
 <ul class='evaluation-list'>
   {foreach from=$evaluations item=evaluation}
     <li class='evaluation-list__item'>
-      <span class='evaluation-list__item--name'>{$evaluation.name}</span>
+      <span class='evaluation-list__item--name'>{$evaluation.menu_name}</span>
+      <span class='evaluation-list__item--name'>{$evaluation.data}</span>
+      <span class='evaluation-list__item--name'>{$evaluation.email}</span>
       <a class='evaluation-list__item--edit' href='./?controller=evaluation&action=edit&evaluation_id={$evaluation.evaluation_id}'><i class='fas fa-pencil-alt'></i></a>
       <a class='evaluation-list__item--destroy' href='./?controller=evaluation&action=delete&evaluation_id={$evaluation.evaluation_id}'><i class='fas fa-trash-alt'></i></a>
     </li>

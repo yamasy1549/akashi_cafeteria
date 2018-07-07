@@ -40,7 +40,7 @@ class EvaluationController extends BaseController
     {
         // テンプレートへ変数割り当て
         $this->view->assign('button_action', 'controller=evaluation&action=new');
-        $this->view->assign('button_name', 'カテゴリ追加');
+        $this->view->assign('button_name', '評価追加');
 
         // テンプレート表示
         $this->view->display('./views/evaluation/new.tpl');
@@ -71,7 +71,7 @@ class EvaluationController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('evaluation', $evaluation);
         $this->view->assign('button_action', 'controller=evaluation&action=new');
-        $this->view->assign('button_name', 'カテゴリ追加');
+        $this->view->assign('button_name', '評価追加');
 
         // テンプレート表示
         $this->view->display('./views/evaluation/edit.tpl');
