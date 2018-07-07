@@ -15,12 +15,17 @@ class Menu extends BaseModel
     }
 
     /**
-    * DBから取得
+    * DBから取得（全部）
     */
     public function getMenus()
     {
         // TODO: セキュリティ対策
-        $sql = sprintf('select * from %s', $this->model_name);
+        // TODO: エラーハンドリング
+        $sql = sprintf(
+          'select '.
+          'menu_id, menu.name as name, menu.price as price, menu.image as image, category.category_id, category.name as category_name '.
+          'from category inner join %s using (category_id)',
+          $this->model_name);
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
 
@@ -30,11 +35,16 @@ class Menu extends BaseModel
     /**
     * DBから取得（一部）
     */
-    public function getMenu($category_id)
+    public function getMenu($menu_id)
     {
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf('select * from %s where menu_id = %s', $this->model_name, $menu_id);
+        $sql = sprintf(
+          'select '.
+          'menu_id, menu.name as name, menu.price as price, menu.image as image, category.category_id, category.name as category_name '.
+          'from category inner join %s using (category_id)'.
+          'where menu_id = %s',
+          $this->model_name, $menu_id);
         $stmt = $this->db->query($sql);
         $result = $stmt->fetch();
 
@@ -48,31 +58,38 @@ class Menu extends BaseModel
     {
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf("update %s set name = '%s' where menu_id = %s", $this->model_name, $menu_id);
+        $sql = sprintf(
+          'update %s '.
+          "set name = '%s', price = %d, image = '%s', category_id = %d ".
+          'where menu_id = %s',
+          $this->model_name,
+          $params['name'], $params['price'], $params['image'], $params['category_id'],
+          $params['menu_id']);
         $res = $this->db->query($sql);
     }
 
     /**
     * データ追加
     */
-    public function create($userId)
+    public function create($params)
     {
         // TODO: セキュリティ対策
-        $sql = sprintf("insert into %s （category_id, name, price, image） values ('%s', '%s','%s', '%s')", $this->model_name, $params['category_id'], $params['name'], $params['price'], $params['image']);
+        // TODO: エラーハンドリング
+        $sql = sprintf(
+          'insert into %s (name, price, image, category_id) '.
+          "values ('%s', %d, '%s', %d)",
+          $this->model_name, $params['name'], $params['price'], $params['imege'], $params['category_id']);
         $res = $this->db->query($sql);
-
-        return $res;
     }
 
     /**
     * データ削除
     */
-    public function destroy($userId)
+    public function destroy($params)
     {
         // TODO: セキュリティ対策
+        // TODO: エラーハンドリング
         $sql = sprintf('delete from %s where menu_id = %s', $this->model_name, $params['menu_id']);
         $res = $this->db->query($sql);
-
-        return $res;
     }
 }

@@ -46,9 +46,8 @@ create table evaluation (
 
 /* sale: true...販売中　false...売り切れ　*/
 create table daymenu (
-    daymanu_id    serial primary key,
+    daymenu_id    serial primary key,
     date          date not null,
     menu_id       integer references menu(menu_id) on delete cascade not null,
-    sale          boolean default true not null,
-    evaluation_id integer references evaluation(evaluation_id) on delete cascade not null
+    sale          boolean default true not null
 );

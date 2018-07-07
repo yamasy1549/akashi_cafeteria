@@ -22,10 +22,10 @@ insert into evaluation (user_id, menu_id, data) values
     ('2', '2', '4'),
     ('3', '3', '5');
 
-insert into daymenu (date, menu_id, sale, evaluation_id) values
-    ('2018-06-12', '1', true, '1'),
-    ('2018-06-13', '2', true, '2'),
-    ('2018-06-14', '3', false, '3');
+insert into daymenu (date, menu_id, sale) values
+    ('2018-06-12', '1', true),
+    ('2018-06-13', '2', true),
+    ('2018-06-14', '3', false);
 
 /* 集合で作ってみたかったんです！
 insert into "user" (email, password, role) values
