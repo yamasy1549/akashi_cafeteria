@@ -22,7 +22,12 @@ class DaymenuController extends BaseController
      */
     public function indexAction()
     {
-        $daymenus = $this->model->getDaymenus();
+        $_daymenus = $this->model->getDaymenus();
+
+        // 日付ごとに連想配列に入れる
+        foreach($_daymenus as $daymenu) {
+          $daymenus[$daymenu['date']][] = $daymenu;
+        }
 
         // テンプレートへ変数割り当て
         $this->view->assign('daymenus', $daymenus);
