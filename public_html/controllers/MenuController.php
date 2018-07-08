@@ -22,7 +22,12 @@ class MenuController extends BaseController
      */
     public function indexAction()
     {
-        $menus = $this->model->getmenus();
+        $_menus = $this->model->getmenus();
+
+        // カテゴリごとに連想配列に入れる
+        foreach($_menus as $menu) {
+          $menus[$menu['category_id']][] = $menu;
+        }
 
         // テンプレートへ変数割り当て
         $this->view->assign('menus', $menus);
