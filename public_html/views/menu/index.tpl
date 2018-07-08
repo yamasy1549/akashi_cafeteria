@@ -3,7 +3,7 @@
 {include file='../templates/header.tpl' title='メニュー' action='一覧'}
 
 {foreach from=$menus item=_menus}
-  <h2 class='menu-list__title'>{$_menus[0]['category_name']}</h2>
+  <h2 class='menu-list__title'>{$_menus[0]['category_name']}({count($_menus)})</h2>
   <ul class='menu-list'>
     {foreach from=$_menus item=menu}
       <li class='menu-list__item'>
