@@ -1,8 +1,8 @@
 {* title= のように変数でテンプレートの中身を変更可能 *}
 
-{include file='../templates/header.tpl' icon='tag' title='日毎メニュー管理' action='削除'}
+{include file='../templates/header.tpl' title='日毎メニュー' action='削除'}
 
-<p>日毎メニュー「{$daymenu.date} {$daymenu.menu_name}」を削除しますか？</p>
+<p class='form__question'>日毎メニュー「{$daymenu.date} {$daymenu.menu_name}」を削除しますか？</p>
 
 <form class='form' action='?controller=daymenu&action=destroy' method='post'>
   {* ユーザに変更されると困るが、変更に必要な情報なのでhiddenにしておく *}

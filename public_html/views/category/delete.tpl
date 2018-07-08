@@ -1,8 +1,8 @@
 {* title= のように変数でテンプレートの中身を変更可能 *}
 
-{include file='../templates/header.tpl' icon='tag' title='カテゴリ管理' action='削除'}
+{include file='../templates/header.tpl' title='カテゴリ' action='削除'}
 
-<p class='delete-notice'>カテゴリ「{$category.name}」を削除しますか？</p>
+<p class='form__question'>カテゴリ「{$category.name}」を削除しますか？</p>
 
 <form class='form' action='?controller=category&action=destroy' method='post'>
   {* ユーザに変更されると困るが、変更に必要な情報なのでhiddenにしておく *}
