@@ -2,7 +2,7 @@
   <ol class='sidebar-list'>
     <li class='sidebar-list__item'>
       <div class='sidebar-list__item-wrapper'>
-        <span class='sidebar-list__item--text'>管理者</span>
+        <span class='sidebar-list__item--text sidebar-list__item--role'>管理者</span>
       </div>
     </li>
     <li class='sidebar-list__item'>
