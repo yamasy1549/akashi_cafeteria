@@ -26,4 +26,8 @@
   </ul>
 {/foreach}
 
+<div class='new-button-wrapper'>
+  <a class='new-button' href='./?controller=menu&action=new'><i class='fas fa-plus'></i></a>
+</div>
+
 {include file='../templates/footer.tpl'}

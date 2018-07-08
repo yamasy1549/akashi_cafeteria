@@ -14,4 +14,8 @@
   {/foreach}
 </ul>
 
+<div class='new-button-wrapper'>
+  <a class='new-button' href='./?controller=category&action=new'><i class='fas fa-plus'></i></a>
+</div>
+
 {include file='../templates/footer.tpl' button_action=$button_action}
