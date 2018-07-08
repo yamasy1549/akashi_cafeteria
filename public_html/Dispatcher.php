@@ -66,8 +66,8 @@ class Dispatcher
      */
     private function getClassName($params)
     {
-        // デフォルトではIndexController
-        $controller = "index";
+        // デフォルトではDaymenuController
+        $controller = "daymenu";
 
         // パラメータの1番目がController
         if (0 < count($params) && $params[0] == "controller") {
