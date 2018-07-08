@@ -2,6 +2,7 @@
 
 require_once './controllers/BaseController.php';
 require_once './models/Daymenu.php';
+require_once './models/Menu.php';
 
 class DaymenuController extends BaseController
 {
@@ -43,7 +44,11 @@ class DaymenuController extends BaseController
      */
     public function newAction()
     {
+        $menu_model = new Menu();
+        $menus = $menu_model->getMenus();
+
         // テンプレートへ変数割り当て
+        $this->view->assign('menus', $menus);
         $this->view->assign('button_action', 'controller=daymenu&action=new');
         $this->view->assign('button_name', '日毎メニュー追加');
 
@@ -73,8 +78,12 @@ class DaymenuController extends BaseController
         $params = $this->request->getQuery();
         $daymenu = $this->model->getDaymenu($params['daymenu_id']);
 
+        $menu_model = new Menu();
+        $menus = $menu_model->getMenus();
+
         // テンプレートへ変数割り当て
         $this->view->assign('daymenu', $daymenu);
+        $this->view->assign('menus', $menus);
         $this->view->assign('button_action', 'controller=daymenu&action=new');
         $this->view->assign('button_name', '日毎メニュー追加');
 

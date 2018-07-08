@@ -2,10 +2,17 @@
   <label class='form__item--label' for='name'>日付</label>
   <input class='form__item--input' id='name' name='date' type='date' value='{$daymenu.date}'>
 </p>
-{* TODO: <select>タグでメニュー名選択 *}
 <p class='form__item'>
   <label class='form__item--label' for='name'>メニュー</label>
-  <input class='form__item--input' id='name' name='menu_id' type='text' value='{$daymenu.menu_id}'>
+  <select class='form__item--select' id='name' name='menu_id'>
+    {foreach from=$menus item=menu}
+      {if $menu.menu_id eq $daymenu.menu_id}
+        <option value='{$menu.menu_id}' selected>{$menu.name}</option>
+      {else}
+        <option value='{$menu.menu_id}'>{$menu.name}</option>
+      {/if}
+    {/foreach}
+  </select>
 </p>
 {* TODO: <input type='radio'>タグで売り切れ情報選択 *}
 {if $daymenu.sale eq 1}

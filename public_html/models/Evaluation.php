@@ -64,7 +64,7 @@ class Evaluation extends BaseModel
         // TODO: エラーハンドリング
         $sql = sprintf(
           'update %s '.
-          'set data = %d, menu_id = menu_id '.
+          'set data = %d, menu_id = %d '.
           'where evaluation_id = %d',
           $this->model_name,
           $params['data'], $params['menu_id'],

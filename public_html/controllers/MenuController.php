@@ -2,6 +2,7 @@
 
 require_once './controllers/BaseController.php';
 require_once './models/Menu.php';
+require_once './models/Category.php';
 
 class MenuController extends BaseController
 {
@@ -43,7 +44,11 @@ class MenuController extends BaseController
      */
     public function newAction()
     {
+        $category_model = new Category();
+        $categories = $category_model->getCategories();
+
         // テンプレートへ変数割り当て
+        $this->view->assign('categories', $categories);
         $this->view->assign('button_action', 'controller=menu&action=new');
         $this->view->assign('button_name', 'メニュー追加');
 
@@ -73,8 +78,12 @@ class MenuController extends BaseController
         $params = $this->request->getQuery();
         $menu = $this->model->getmenu($params['menu_id']);
 
+        $category_model = new Category();
+        $categories = $category_model->getCategories();
+
         // テンプレートへ変数割り当て
         $this->view->assign('menu', $menu);
+        $this->view->assign('categories', $categories);
         $this->view->assign('button_action', 'controller=menu&action=new');
         $this->view->assign('button_name', 'メニュー追加');
 

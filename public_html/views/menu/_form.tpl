@@ -2,10 +2,17 @@
   <label class='form__item--label' for='name'>メニュー名</label>
   <input class='form__item--input' id='name' name='name' type='text' value='{$menu.name}'>
 </p>
-{* TODO: <select>タグでカテゴリ名選択 *}
 <p class='form__item'>
   <label class='form__item--label' for='name'>カテゴリ</label>
-  <input class='form__item--input' id='name' name='category_id' type='text' value='{$menu.category_id}'>
+  <select class='form__item--select' id='name' name='category_id'>
+    {foreach from=$categories item=category}
+      {if $category.category_id eq $menu.category_id}
+        <option value='{$category.category_id}' selected>{$category.name}</option>
+      {else}
+        <option value='{$category.category_id}'>{$category.name}</option>
+      {/if}
+    {/foreach}
+  </select>
 </p>
 <p class='form__item'>
   <label class='form__item--label' for='name'>価格</label>
