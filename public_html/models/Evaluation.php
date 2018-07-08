@@ -25,7 +25,8 @@ class Evaluation extends BaseModel
           'select '.
           'evaluation.evaluation_id, evaluation.data, menu.menu_id, menu.name as menu_name, "user".email '.
           'from (%s inner join "user" using (user_id)) '.
-          'inner join menu using (menu_id)',
+          'inner join menu using (menu_id) '.
+          'order by menu_id asc',
           $this->model_name);
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();

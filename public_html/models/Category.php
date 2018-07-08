@@ -21,7 +21,10 @@ class Category extends BaseModel
     {
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf('select * from %s', $this->model_name);
+        $sql = sprintf(
+          'select * from %s '.
+          'order by category_id asc',
+          $this->model_name);
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
 

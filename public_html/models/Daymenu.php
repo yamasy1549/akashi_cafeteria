@@ -24,7 +24,8 @@ class Daymenu extends BaseModel
         $sql = sprintf(
           'select '.
           'daymenu_id, menu_id, date, sale, menu.name as menu_name, price, image, category.name as category_name '.
-          'from (%s inner join menu using (menu_id)) inner join category using (category_id)',
+          'from (%s inner join menu using (menu_id)) inner join category using (category_id) '.
+          'order by date asc',
           $this->model_name);
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();

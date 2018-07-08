@@ -24,7 +24,8 @@ class Menu extends BaseModel
         $sql = sprintf(
           'select '.
           'menu_id, menu.name as name, menu.price as price, menu.image as image, category.category_id, category.name as category_name '.
-          'from category inner join %s using (category_id)',
+          'from category inner join %s using (category_id) '.
+          'order by category_id asc',
           $this->model_name);
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
