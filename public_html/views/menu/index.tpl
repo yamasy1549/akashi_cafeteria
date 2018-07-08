@@ -8,14 +8,18 @@
     {foreach from=$_menus item=menu}
       <li class='menu-list__item'>
         <div class='menu-list__item--imgarea'>
-          <img class='menu-list__item--img' src='{$menu.image|default:"../images/noimage.png"}' />
-          <a class='menu-list__item--edit' href='./?controller=menu&action=edit&menu_id={$menu.menu_id}'><i class='fas fa-pencil-alt'></i></a>
-          <a class='menu-list__item--destroy' href='./?controller=menu&action=delete&menu_id={$menu.menu_id}'><i class='fas fa-trash-alt'></i></a>
+          <a href='./?controller=menu&action=edit&menu_id={$menu.menu_id}'>
+            <img class='menu-list__item--img' src='{$menu.image|default:"../images/noimage.png"}' />
+            <a class='menu-list__item--edit' href='./?controller=menu&action=edit&menu_id={$menu.menu_id}'><i class='fas fa-pencil-alt'></i></a>
+            <a class='menu-list__item--destroy' href='./?controller=menu&action=delete&menu_id={$menu.menu_id}'><i class='fas fa-trash-alt'></i></a>
+          </a>
         </div>
         <div class='menu-list__item--info'>
-          <div class='menu-list__item--category-name'>{$menu.category_name}</div>
-          <div class='menu-list__item--name'>{$menu.name}</div>
-          <div class='menu-list__item--price'>¥{$menu.price}</div>
+          <a href='./?controller=menu&action=edit&menu_id={$menu.menu_id}'>
+            <div class='menu-list__item--category-name'>{$menu.category_name}</div>
+            <div class='menu-list__item--name'>{$menu.name}</div>
+            <div class='menu-list__item--price'>¥{$menu.price}</div>
+          </a>
         </div>
       </li>
     {/foreach}

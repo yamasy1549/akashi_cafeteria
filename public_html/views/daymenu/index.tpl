@@ -6,20 +6,26 @@
   <h2 class='menu-list__title'>{$_daymenus[0]['date']}</h2>
   <ul class='menu-list'>
     {foreach from=$_daymenus item=daymenu}
-      <li class='menu-list__item'>
+      {if $daymenu.sale eq 0}
+        {* 売り切れの場合はグレースケールにする *}
+        <li class='menu-list__item menu-list__item--sale'>
+      {else}
+        <li class='menu-list__item'>
+      {/if}
         <div class='menu-list__item--imgarea'>
-          <img class='menu-list__item--img' src='{$daymenu.image|default:"../images/noimage.png"}' />
-          <a class='menu-list__item--edit' href='./?controller=daymenu&action=edit&daymenu_id={$daymenu.daymenu_id}'><i class='fas fa-pencil-alt'></i></a>
-          <a class='menu-list__item--destroy' href='./?controller=daymenu&action=delete&daymenu_id={$daymenu.daymenu_id}'><i class='fas fa-trash-alt'></i></a>
+          <a href='./?controller=daymenu&action=edit&daymenu_id={$daymenu.daymenu_id}'>
+            <img class='menu-list__item--img' src='{$daymenu.image|default:"../images/noimage.png"}' />
+            <a class='menu-list__item--edit' href='./?controller=daymenu&action=edit&daymenu_id={$daymenu.daymenu_id}'><i class='fas fa-pencil-alt'></i></a>
+            <a class='menu-list__item--destroy' href='./?controller=daymenu&action=delete&daymenu_id={$daymenu.daymenu_id}'><i class='fas fa-trash-alt'></i></a>
+          </a>
         </div>
         <div class='menu-list__item--info'>
-          <div class='menu-list__item--category-name'>{$daymenu.category_name}</div>
-          <div class='menu-list__item--name'>{$daymenu.menu_name}</div>
-          <div class='menu-list__item--price'>¥{$daymenu.price}</div>
+          <a href='./?controller=menu&action=edit&menu_id={$daymenu.menu_id}'>
+            <div class='menu-list__item--category-name'>{$daymenu.category_name}</div>
+            <div class='menu-list__item--name'>{$daymenu.menu_name}</div>
+            <div class='menu-list__item--price'>¥{$daymenu.price}</div>
+          </a>
         </div>
-        {if $daymenu.sale eq 0}
-          <div class='menu-list__item--sale'></div>
-        {/if}
       </li>
     {/foreach}
   </ul>

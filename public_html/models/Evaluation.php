@@ -23,7 +23,7 @@ class Evaluation extends BaseModel
         // TODO: エラーハンドリング
         $sql = sprintf(
           'select '.
-          'evaluation.evaluation_id, evaluation.data, menu.menu_id, menu.name as menu_name, "user".email '.
+          'evaluation.evaluation_id, evaluation.data, menu.menu_id, menu.name as menu_name, "user".user_id, "user".email '.
           'from (%s inner join "user" using (user_id)) '.
           'inner join menu using (menu_id) '.
           'order by menu_id asc',
@@ -43,7 +43,7 @@ class Evaluation extends BaseModel
         // TODO: エラーハンドリング
         $sql = sprintf(
           'select '.
-          'evaluation.evaluation_id, evaluation.data, menu.menu_id, menu.name as menu_name, "user".email '.
+          'evaluation.evaluation_id, evaluation.data, menu.menu_id, menu.name as menu_name, "user".user_id, "user".email '.
           'from (%s inner join "user" using (user_id)) '.
           'inner join menu using (menu_id) '.
           'where evaluation_id = %d',
