@@ -2,10 +2,10 @@
 
 {include file='../templates/header.tpl' title='日毎メニュー' action='一覧'}
 
-{foreach from=$daymenus item=_day_menus}
-  <h2 class='menu-list__date'>{$_day_menus[0]['date']}</h2>
+{foreach from=$daymenus item=_daymenus}
+  <h2 class='menu-list__title'>{$_daymenus[0]['date']}</h2>
   <ul class='menu-list'>
-    {foreach from=$_day_menus item=daymenu}
+    {foreach from=$_daymenus item=daymenu}
       <li class='menu-list__item'>
         <div class='menu-list__item--imgarea'>
           <img class='menu-list__item--img' src='{$daymenu.image|default:"../images/noimage.png"}' />

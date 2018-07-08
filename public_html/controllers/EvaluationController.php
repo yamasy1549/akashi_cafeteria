@@ -22,7 +22,12 @@ class EvaluationController extends BaseController
      */
     public function indexAction()
     {
-        $evaluations = $this->model->getEvaluations();
+        $_evaluations = $this->model->getEvaluations();
+
+        // メニューごとに連想配列に入れる
+        foreach($_evaluations as $evaluation) {
+          $evaluations[$evaluation['menu_id']][] = $evaluation;
+        }
 
         // テンプレートへ変数割り当て
         $this->view->assign('evaluations', $evaluations);
