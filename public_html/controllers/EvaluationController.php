@@ -2,6 +2,7 @@
 
 require_once './controllers/BaseController.php';
 require_once './models/Evaluation.php';
+require_once './models/Menu.php';
 
 class EvaluationController extends BaseController
 {
@@ -43,7 +44,11 @@ class EvaluationController extends BaseController
      */
     public function newAction()
     {
+        $menu_model = new Menu();
+        $menus = $menu_model->getMenus();
+
         // テンプレートへ変数割り当て
+        $this->view->assign('menus', $menus);
         $this->view->assign('button_action', 'controller=evaluation&action=new');
         $this->view->assign('button_name', '評価追加');
 
@@ -73,8 +78,12 @@ class EvaluationController extends BaseController
         $params = $this->request->getQuery();
         $evaluation = $this->model->getEvaluation($params['evaluation_id']);
 
+        $menu_model = new Menu();
+        $menus = $menu_model->getMenus();
+
         // テンプレートへ変数割り当て
         $this->view->assign('evaluation', $evaluation);
+        $this->view->assign('menus', $menus);
         $this->view->assign('button_action', 'controller=evaluation&action=new');
         $this->view->assign('button_name', '評価追加');
 
