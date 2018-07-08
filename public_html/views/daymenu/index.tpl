@@ -3,7 +3,12 @@
 {include file='../templates/header.tpl' title='日毎メニュー' action='一覧'}
 
 {foreach from=$daymenus item=_daymenus}
-  <h2 class='menu-list__title'>{$_daymenus[0]['date']}</h2>
+  {$date = $_daymenus[0]['date']}
+  <h2 class='menu-list__title' id='{$date}'>
+    <a class='menu-list__title--link' href='#{$date}'>
+      <i class='menu-list__title--mark fas fa-link'></i>{$date}
+    </a>
+  </h2>
   <ul class='menu-list'>
     {foreach from=$_daymenus item=daymenu}
       {if $daymenu.sale eq 0}
