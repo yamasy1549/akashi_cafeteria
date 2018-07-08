@@ -23,8 +23,10 @@ class Daymenu extends BaseModel
         // TODO: エラーハンドリング
         $sql = sprintf(
           'select '.
-          'daymenu_id, menu_id, date, sale, menu.name as menu_name, price, image, category.name as category_name '.
+          'daymenu_id, menu_id, date, sale, menu.name as menu_name, price, image, category.name as category_name, avg(data) as data '.
           'from (%s inner join menu using (menu_id)) inner join category using (category_id) '.
+          'left join evaluation using (menu_id) '.
+          'group by daymenu_id, menu_id, date, sale, menu.name, price, image, category.name '.
           'order by date asc',
           $this->model_name);
         $stmt = $this->db->query($sql);

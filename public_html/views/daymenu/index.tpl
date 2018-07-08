@@ -29,6 +29,14 @@
             <div class='menu-list__item--category-name'>{$daymenu.category_name}</div>
             <div class='menu-list__item--name'>{$daymenu.menu_name}</div>
             <div class='menu-list__item--price'>¥{$daymenu.price}</div>
+            <div class='menu-list__item--stars'>
+              {for $count=1 to $daymenu.data}
+                 <i class='menu-list__item--star fas fa-star'></i>
+               {/for}
+              {for $count=1 to (5 - $daymenu.data)}
+                 <i class='menu-list__item--star far fa-star'></i>
+              {/for}
+            </div>
           </a>
         </div>
       </li>
