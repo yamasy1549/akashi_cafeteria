@@ -27,7 +27,7 @@ class Daymenu extends BaseModel
           'from (%s inner join menu using (menu_id)) inner join category using (category_id) '.
           'left join evaluation using (menu_id) '.
           'group by daymenu_id, menu_id, date, sale, menu.name, price, image, category.name '.
-          'order by date asc',
+          'order by date, menu_id asc',
           $this->model_name);
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
