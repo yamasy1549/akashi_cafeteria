@@ -19,15 +19,12 @@
 </p>
 
 {* sale *}
-{* TODO: <input type='radio'>タグで売り切れ情報選択 *}
-{if $daymenu.sale eq 1}
-  {$sale = 1}
-{else}
-  {$sale = 0}
-{/if}
 <p class='form__item'>
-  <label class='form__item--label' for='sale'>売り切れ情報</label>
-  <input class='form__item--input' id='sale' name='sale' type='text' value='{$sale}'>
+  <label class='form__item--label'>売り切れ情報</label>
+  <div class='form__item--radio'>
+    <input id='sale1' type='radio' name='sale' value='1' {($daymenu.sale eq 1) ? 'checked' : ''}><label for='sale1'>販売中</label>
+    <input id='sale0' type='radio' name='sale' value='0' {($daymenu.sale eq 1) ? '' : 'checked'}><label for='sale0'>売り切れ</label>
+  </div>
 </p>
 
 {* daymenu_id *}
