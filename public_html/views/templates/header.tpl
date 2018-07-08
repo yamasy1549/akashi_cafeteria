@@ -18,7 +18,7 @@
   <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.1.0/css/all.css' integrity='sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt' crossorigin='anonymous'>
 </head>
 <body>
-  {include file='./sidebar.tpl'}
+  {include file='./sidebar.tpl' title=$title}
   <main class='global-main'>
     <header class='global-header'>
       <h1 class='global-header__title'>
