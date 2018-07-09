@@ -1,7 +1,7 @@
 {* date *}
 <p class='form__item'>
   <label class='form__item--label' for='date'>日付</label>
-  <input class='form__item--input' id='date' name='date' type='date' value='{$daymenu.date}'>
+  <input class='form__item--input' id='date' name='date' type='date' value='{$daymenu.date|default:date("Y-m-d")}'>
 </p>
 
 {* menu_id *}
