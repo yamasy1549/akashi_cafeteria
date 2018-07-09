@@ -26,7 +26,8 @@ class Menu extends BaseModel
           'menu_id, menu.name as name, menu.price as price, menu.image as image, category.category_id, category.name as category_name '.
           'from category inner join %s using (category_id) '.
           'order by menu_id asc',
-          $this->model_name);
+          $this->model_name
+        );
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
 
@@ -45,7 +46,9 @@ class Menu extends BaseModel
           'menu_id, menu.name as name, menu.price as price, menu.image as image, category.category_id, category.name as category_name '.
           'from category inner join %s using (category_id)'.
           'where menu_id = %s',
-          $this->model_name, $menu_id);
+          $this->model_name,
+            $menu_id
+        );
         $stmt = $this->db->query($sql);
         $result = $stmt->fetch();
 
@@ -57,6 +60,9 @@ class Menu extends BaseModel
     */
     public function update($params)
     {
+        // バリデーション
+        validate(ispresent($params['name']), isnumber($params['price']), isid($params['category_id']), isid($params['menu_id']));
+
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
         $sql = sprintf(
@@ -64,8 +70,12 @@ class Menu extends BaseModel
           "set name = '%s', price = %d, image = '%s', category_id = %d ".
           'where menu_id = %s',
           $this->model_name,
-          $params['name'], $params['price'], $params['image'], $params['category_id'],
-          $params['menu_id']);
+          $params['name'],
+            $params['price'],
+            $params['image'],
+            $params['category_id'],
+          $params['menu_id']
+        );
         $res = $this->db->query($sql);
     }
 
@@ -74,12 +84,20 @@ class Menu extends BaseModel
     */
     public function create($params)
     {
+        // バリデーション
+        validate(ispresent($params['name']), isnumber($params['price']), isid($params['category_id']));
+
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
         $sql = sprintf(
           'insert into %s (name, price, image, category_id) '.
           "values ('%s', %d, '%s', %d)",
-          $this->model_name, $params['name'], $params['price'], $params['imege'], $params['category_id']);
+          $this->model_name,
+            $params['name'],
+            $params['price'],
+            $params['imege'],
+            $params['category_id']
+        );
         $res = $this->db->query($sql);
     }
 

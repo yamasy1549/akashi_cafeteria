@@ -26,8 +26,8 @@ class MenuController extends BaseController
         $_menus = $this->model->getmenus();
 
         // カテゴリごとに連想配列に入れる
-        foreach($_menus as $menu) {
-          $menus[$menu['category_id']][] = $menu;
+        foreach ($_menus as $menu) {
+            $menus[$menu['category_id']][] = $menu;
         }
 
         // テンプレートへ変数割り当て

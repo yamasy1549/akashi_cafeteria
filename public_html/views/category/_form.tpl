@@ -1,7 +1,7 @@
 {* category_name *}
 <p class='form__item'>
   <label class='form__item--label' for='name'>カテゴリ名</label>
-  <input class='form__item--input' id='name' name='name' type='text' value='{$category.name}'>
+  <input class='form__item--input' id='name' name='name' type='text' value='{h($category.name)}'>
 </p>
 
 {* category_id *}

@@ -19,15 +19,15 @@
       {/if}
         <div class='menu-list__item--imgarea'>
           <a href='./?controller=daymenu&action=edit&daymenu_id={$daymenu.daymenu_id}'>
-            <img class='menu-list__item--img' src='{$daymenu.image|default:"../images/noimage.png"}' />
+            <img class='menu-list__item--img' src='{h($daymenu.image)|default:"../images/noimage.png"}' />
             <a class='menu-list__item--edit' href='./?controller=daymenu&action=edit&daymenu_id={$daymenu.daymenu_id}'><i class='fas fa-pencil-alt'></i></a>
             <a class='menu-list__item--destroy' href='./?controller=daymenu&action=delete&daymenu_id={$daymenu.daymenu_id}'><i class='fas fa-trash-alt'></i></a>
           </a>
         </div>
         <div class='menu-list__item--info'>
           <a href='./?controller=menu&action=edit&menu_id={$daymenu.menu_id}'>
-            <div class='menu-list__item--category-name'>{$daymenu.category_name}</div>
-            <div class='menu-list__item--name'>{$daymenu.menu_name}</div>
+            <div class='menu-list__item--category-name'>{h($daymenu.category_name)}</div>
+            <div class='menu-list__item--name'>{h($daymenu.menu_name)}</div>
             <div class='menu-list__item--price'>¥{$daymenu.price}</div>
             <div class='menu-list__item--stars'>
               {for $count=1 to $daymenu.data}

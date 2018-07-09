@@ -1,5 +1,7 @@
 <?php
 
+require_once './functions.php';
+
 /**
  * 抽象モデル
  */
