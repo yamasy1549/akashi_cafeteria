@@ -1,7 +1,7 @@
 {* name *}
 <p class='form__item'>
   <label class='form__item--label' for='name'>メニュー名</label>
-  <input class='form__item--input' id='name' name='name' type='text' value='{h($menu.name)}'>
+  <input class='form__item--input' id='name' name='name' type='text' value='{h($menu.name)|default:""}'>
 </p>
 
 {* category_id *}
@@ -22,13 +22,13 @@
 {* price *}
 <p class='form__item'>
   <label class='form__item--label' for='price'>価格</label>
-  <input class='form__item--input' id='price' name='price' type='number' value='{$menu.price}'>
+  <input class='form__item--input' id='price' name='price' type='number' value='{$menu.price|default:300}'>
 </p>
 
 {* image *}
 <p class='form__item'>
   <label class='form__item--label' for='image'>画像</label>
-  <input class='form__item--input' id='image' name='image' type='text' value='{h($menu.image)}'>
+  <input class='form__item--input' id='image' name='image' type='text' value='{h($menu.image|default:"")}'>
 </p>
 
 {* menu_id *}

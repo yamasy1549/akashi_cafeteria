@@ -1,7 +1,7 @@
 {* category_name *}
 <p class='form__item'>
   <label class='form__item--label' for='name'>カテゴリ名</label>
-  <input class='form__item--input' id='name' name='name' type='text' value='{h($category.name)}'>
+  <input class='form__item--input' id='name' name='name' type='text' value='{h($category.name)|default:""}'>
 </p>
 
 {* category_id *}
@@ -12,5 +12,5 @@
 
 {* ボタン *}
 <p class='form__item'>
-  <input class='form__item--button' type='submit' value='カテゴリ更新'>
+  <input class='form__item--button' type='submit' value='{$button_name}'>
 </p>

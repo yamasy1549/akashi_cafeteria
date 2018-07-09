@@ -1,7 +1,7 @@
 {* data *}
 <p class='form__item'>
   <label class='form__item--label' for='data'>評価（5段階）</label>
-  <input class='form__item--input' id='data' name='data' type='number' value='{$evaluation.data}'>
+  <input class='form__item--input' id='data' name='data' type='number' value='{$evaluation.data|default:3}'>
 </p>
 
 {* menu_id *}
@@ -27,5 +27,5 @@
 
 {* ボタン *}
 <p class='form__item'>
-  <input class='form__item--button' type='submit' value='評価更新'>
+  <input class='form__item--button' type='submit' value='{$button_name}'>
 </p>
