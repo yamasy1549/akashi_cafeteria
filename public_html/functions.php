@@ -26,7 +26,7 @@ function validate(...$params)
 }
 
 /**
- * 存在チェック
+ * 空文字でないこと（存在）チェック
  *
  * @param string $str チェックしたい文字列
  * @return boolean
