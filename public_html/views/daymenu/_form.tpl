@@ -22,9 +22,16 @@
 {* sale *}
 <p class='form__item'>
   <label class='form__item--label'>売り切れ情報</label>
-  <div class='form__item--radio'>
-    <input id='sale1' type='radio' name='sale' value='1' {($daymenu.sale eq 1) ? 'checked' : ''}><label for='sale1'>販売中</label>
-    <input id='sale0' type='radio' name='sale' value='0' {($daymenu.sale eq 1) ? '' : 'checked'}><label for='sale0'>売り切れ</label>
+    {if !isset($daymenu) || $daymenu.sale eq 1}
+      {$sale1 = 'checked'}
+      {$sale0 = ''}
+    {else}
+      {$sale0 = 'checked'}
+      {$sale1 = ''}
+    {/if}
+    <div class='form__item--radio'>
+      <input id='sale1' type='radio' name='sale' value='1' {$sale1}><label for='sale1'>販売中</label>
+      <input id='sale0' type='radio' name='sale' value='0' {$sale0}><label for='sale0'>売り切れ</label>
   </div>
 </p>
 
