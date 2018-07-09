@@ -8,6 +8,7 @@
 <p class='form__item'>
   <label class='form__item--label' for='menu_id'>メニュー</label>
   <select class='form__item--select' id='menu_id' name='menu_id'>
+    <option value=''>＜選択＞</option>
     {foreach from=$menus item=menu}
       {if $menu.menu_id eq $daymenu.menu_id}
         <option value='{$menu.menu_id}' selected>{$menu.name}</option>

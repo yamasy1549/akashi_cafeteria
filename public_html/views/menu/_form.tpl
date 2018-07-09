@@ -8,6 +8,7 @@
 <p class='form__item'>
   <label class='form__item--label' for='category_id'>カテゴリ</label>
   <select class='form__item--select' id='category_id' name='category_id'>
+    <option value=''>＜選択＞</option>
     {foreach from=$categories item=category}
       {if $category.category_id eq $menu.category_id}
         <option value='{$category.category_id}' selected>{$category.name}</option>
