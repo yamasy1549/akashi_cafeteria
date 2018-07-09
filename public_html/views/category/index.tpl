@@ -6,7 +6,7 @@
   {foreach from=$categories item=category}
     <li class='table-list__item'>
       <a href='./?controller=category&action=edit&category_id={$category.category_id}'>
-        <span class='table-list__item--name'>{$category.name}</span>
+        <span class='table-list__item--name'>{h($category.name)}</span>
       </a>
       <a class='table-list__item--edit' href='./?controller=category&action=edit&category_id={$category.category_id}'><i class='fas fa-pencil-alt'></i></a>
       <a class='table-list__item--destroy' href='./?controller=category&action=delete&category_id={$category.category_id}'><i class='fas fa-trash-alt'></i></a>

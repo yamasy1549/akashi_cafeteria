@@ -4,7 +4,7 @@
 
 {foreach from=$evaluations item=_evaluations}
 <a href='./?controller=menu&action=edit&menu_id={$_evaluations[0].menu_id}'>
-  <h2 class='table-list__title'>{$_evaluations[0].menu_name}</h2>
+  <h2 class='table-list__title'>{h($_evaluations[0].menu_name)}</h2>
 </a>
 <ul class='table-list'>
   {foreach from=$_evaluations item=evaluation}

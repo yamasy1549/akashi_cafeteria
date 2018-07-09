@@ -1,7 +1,7 @@
 {* name *}
 <p class='form__item'>
   <label class='form__item--label' for='name'>メニュー名</label>
-  <input class='form__item--input' id='name' name='name' type='text' value='{$menu.name}'>
+  <input class='form__item--input' id='name' name='name' type='text' value='{h($menu.name)}'>
 </p>
 
 {* category_id *}
@@ -11,9 +11,9 @@
     <option value=''>＜選択＞</option>
     {foreach from=$categories item=category}
       {if $category.category_id eq $menu.category_id}
-        <option value='{$category.category_id}' selected>{$category.name}</option>
+        <option value='{$category.category_id}' selected>{h($category.name)}</option>
       {else}
-        <option value='{$category.category_id}'>{$category.name}</option>
+        <option value='{$category.category_id}'>{h($category.name)}</option>
       {/if}
     {/foreach}
   </select>
@@ -28,7 +28,7 @@
 {* image *}
 <p class='form__item'>
   <label class='form__item--label' for='image'>画像</label>
-  <input class='form__item--input' id='image' name='image' type='text' value='{$menu.image}'>
+  <input class='form__item--input' id='image' name='image' type='text' value='{h($menu.image)}'>
 </p>
 
 {* menu_id *}
