@@ -6,3 +6,4 @@ public_html/templates_c/*
 node_modules
 styles
 !styles/index.css
+phpunit
