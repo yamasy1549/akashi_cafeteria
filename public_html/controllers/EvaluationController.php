@@ -26,8 +26,8 @@ class EvaluationController extends BaseController
         $_evaluations = $this->model->getEvaluations();
 
         // メニューごとに連想配列に入れる
-        foreach($_evaluations as $evaluation) {
-          $evaluations[$evaluation['menu_id']][] = $evaluation;
+        foreach ($_evaluations as $evaluation) {
+            $evaluations[$evaluation['menu_id']][] = $evaluation;
         }
 
         // テンプレートへ変数割り当て

@@ -27,7 +27,8 @@ class Evaluation extends BaseModel
           'from (%s inner join "user" using (user_id)) '.
           'inner join menu using (menu_id) '.
           'order by menu_id asc',
-          $this->model_name);
+          $this->model_name
+        );
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
 
@@ -48,7 +49,8 @@ class Evaluation extends BaseModel
           'inner join menu using (menu_id) '.
           'where evaluation_id = %d',
           $this->model_name,
-          $evaluation_id);
+          $evaluation_id
+        );
         $stmt = $this->db->query($sql);
         $result = $stmt->fetch();
 
@@ -70,8 +72,10 @@ class Evaluation extends BaseModel
           'set data = %d, menu_id = %d '.
           'where evaluation_id = %d',
           $this->model_name,
-          $params['data'], $params['menu_id'],
-          $params['evaluation_id']);
+          $params['data'],
+            $params['menu_id'],
+          $params['evaluation_id']
+        );
         $res = $this->db->query($sql);
     }
 
@@ -89,7 +93,10 @@ class Evaluation extends BaseModel
           'insert into %s '.
           '(data, menu_id, user_id) values (%d, %d, %d)',
           $this->model_name,
-          $params['data'], $params['menu_id'], $params['user_id']);
+          $params['data'],
+            $params['menu_id'],
+            $params['user_id']
+        );
         $res = $this->db->query($sql);
     }
 

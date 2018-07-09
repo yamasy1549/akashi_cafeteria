@@ -28,7 +28,8 @@ class Daymenu extends BaseModel
           'left join evaluation using (menu_id) '.
           'group by daymenu_id, menu_id, date, sale, menu.name, price, image, category.name '.
           'order by date, menu_id asc',
-          $this->model_name);
+          $this->model_name
+        );
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
 
@@ -48,7 +49,8 @@ class Daymenu extends BaseModel
           'from (%s inner join menu using (menu_id)) inner join category using (category_id) '.
           'where daymenu_id = %d',
           $this->model_name,
-          $daymenu_id);
+          $daymenu_id
+        );
         $stmt = $this->db->query($sql);
         $result = $stmt->fetch();
 
@@ -70,7 +72,11 @@ class Daymenu extends BaseModel
           "set date = '%s', menu_id = %d, sale = '%s' ".
           'where daymenu_id = %d',
           $this->model_name,
-          $params['date'], $params['menu_id'], $params['sale'] ? 'true' : 'false', $params['daymenu_id']);
+          $params['date'],
+            $params['menu_id'],
+            $params['sale'] ? 'true' : 'false',
+            $params['daymenu_id']
+        );
         $res = $this->db->query($sql);
     }
 
@@ -88,7 +94,10 @@ class Daymenu extends BaseModel
           'insert into %s '.
           "(date, menu_id, sale) values ('%s', %d, '%s')",
           $this->model_name,
-          $params['date'], $params['menu_id'], $params['sale'] ? 'true' : 'false');
+          $params['date'],
+            $params['menu_id'],
+            $params['sale'] ? 'true' : 'false'
+        );
         $res = $this->db->query($sql);
     }
 
