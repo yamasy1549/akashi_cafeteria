@@ -11,6 +11,10 @@ function validate(...$params) {
   }
 }
 
+function ispresent($str) {
+  return preg_match("/^[\S]+$/", $str);
+}
+
 function isid($str) {
   return preg_match("/^[1-9][0-9]?$/", $str);
 }

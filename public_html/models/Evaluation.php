@@ -60,6 +60,9 @@ class Evaluation extends BaseModel
     */
     public function update($params)
     {
+        // バリデーション
+        validate(isnumber_data($params['data']), isid($params['menu_id']), isid($params['evaluation_id']));
+
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
         $sql = sprintf(
@@ -77,6 +80,9 @@ class Evaluation extends BaseModel
     */
     public function create($params)
     {
+        // バリデーション
+        validate(isnumber_data($params['data']), isid($params['menu_id']), isid($params['user_id']));
+
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
         $sql = sprintf(

@@ -50,9 +50,18 @@ class Category extends BaseModel
     */
     public function update($params)
     {
+        // バリデーション
+        validate(ispresent($params['name']), isid($params['category_id']));
+
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf("update %s set name = '%s' where category_id = %s", $this->model_name, $params['name'], $params['category_id']);
+        $sql = sprintf(
+          'update %s '.
+          "set name = '%s' ".
+          'where category_id = %d',
+          $this->model_name,
+          $params['name'],
+          $params['category_id']);
         $res = $this->db->query($sql);
     }
 
@@ -61,9 +70,16 @@ class Category extends BaseModel
     */
     public function create($params)
     {
+        // バリデーション
+        validate(ispresent($params['name']));
+
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf("insert into %s (name) values ('%s')", $this->model_name, $params['name']);
+        $sql = sprintf(
+          'insert into %s (name) '.
+          "values ('%s')",
+          $this->model_name,
+          $params['name']);
         $res = $this->db->query($sql);
     }
 

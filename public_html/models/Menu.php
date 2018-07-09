@@ -57,6 +57,9 @@ class Menu extends BaseModel
     */
     public function update($params)
     {
+        // バリデーション
+        validate(ispresent($params['name']), isnumber($params['price']), isid($params['category_id']), isid($params['menu_id']));
+
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
         $sql = sprintf(
@@ -74,6 +77,9 @@ class Menu extends BaseModel
     */
     public function create($params)
     {
+        // バリデーション
+        validate(ispresent($params['name']), isnumber($params['price']), isid($params['category_id']));
+
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
         $sql = sprintf(
