@@ -159,6 +159,16 @@ $ export $(cat .env) &&  php -S 127.0.0.1:8080 -t public_html
 # ブラウザで localhost:8080 を開く
 ```
 
+### テスト
+
+```
+# 初回のみ
+$ ./bin/install_phpunit.sh
+
+# 実行時
+$ ./bin/phpunit test
+```
+
 ## コマンド一覧
 ### ターミナル上のコマンド
 
