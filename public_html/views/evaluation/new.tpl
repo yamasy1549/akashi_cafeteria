@@ -3,7 +3,7 @@
 {include file='../templates/header.tpl' title='評価' action='追加'}
 
 <form class='form' action='?controller=evaluation&action=create' method='post'>
-  {include file='./_form.tpl' evaluation=$evaluation}
+  {include file='./_form.tpl' button_name='評価追加'}
   {* ユーザに変更されると困るが、変更に必要な情報なのでhiddenにしておく *}
   <p class='form__hidden-item'>
     {* TODO: 動作確認のためdefaultを入れているのでUser実装後に削除 *}

@@ -12,5 +12,5 @@
 
 {* ボタン *}
 <p class='form__item'>
-  <input class='form__item--button' type='submit' value='カテゴリ更新'>
+  <input class='form__item--button' type='submit' value='{$button_name}'>
 </p>

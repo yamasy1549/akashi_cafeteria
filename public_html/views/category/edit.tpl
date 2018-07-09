@@ -3,7 +3,7 @@
 {include file='../templates/header.tpl' title='カテゴリ' action='編集'}
 
 <form class='form' action='?controller=category&action=update&category_id={$category.category_id}' method='post'>
-  {include file='./_form.tpl' category=$category}
+  {include file='./_form.tpl' button_name='カテゴリ更新'}
 </form>
 
 {include file='../templates/footer.tpl'}

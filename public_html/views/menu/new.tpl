@@ -3,7 +3,7 @@
 {include file='../templates/header.tpl' title='メニュー' action='追加'}
 
 <form class='form' action='?controller=menu&action=create&menu_id={$menu.menu_id}' method='post'>
-  {include file='./_form.tpl' menu=$menu button_name='メニュー追加'}
+  {include file='./_form.tpl' button_name='メニュー追加'}
 </form>
 
 {include file='../templates/footer.tpl'}
