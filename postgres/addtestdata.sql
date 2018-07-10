@@ -1,11 +1,6 @@
 /* まだ集合が分からないので手打ちデータを入力しています　*/
 /* TODO: 変更が容易なデータの作成（関数などを用いる）　*/
 
-insert into "user" (email, password, role) values
-    ('test1@example.com', 'password', '管理者'),
-    ('test2@example.com', 'password', '管理者'),
-    ('test3@example.com', 'password', '評価者');
-
 insert into category (name) values
     ('Aセット'),
     ('Bセット'),
@@ -26,12 +21,12 @@ insert into menu (category_id, name, price, image) values
     ('4', '醤油ラーメン', 210, 'http://www.week.co.jp/matome/wp-content/uploads/2015/08/cd0267c33f1b68503993ef357ff3634c.jpg'),
     ('5', 'ライス', 100, 'https://uds.gnst.jp/rest/img/envdvwew0000/s_0n68.jpg');
 
-insert into evaluation (user_id, menu_id, data) values
-    ('1', '1', '5'),
-    ('1', '9', '2'),
-    ('2', '9', '4'),
-    ('2', '10', '3'),
-    ('3', '11', '2');
+insert into evaluation (menu_id, data) values
+    ('1', '5'),
+    ('9', '2'),
+    ('9', '4'),
+    ('10', '3'),
+    ('11', '2');
 
 insert into daymenu (date, menu_id, sale) values
     ('2018-07-17', '1', true),
