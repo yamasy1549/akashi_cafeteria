@@ -44,11 +44,14 @@ class MenuController extends BaseController
      */
     public function newAction()
     {
+        $params = $this->request->getQuery();
+
         $category_model = new Category();
         $categories = $category_model->getCategories();
 
         // テンプレートへ変数割り当て
         $this->view->assign('categories', $categories);
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=menu&action=new');
         $this->view->assign('button_name', 'メニュー追加');
 
@@ -64,7 +67,8 @@ class MenuController extends BaseController
         $params = $this->request->getPost();
 
         // バリデーション
-        validate(ispresent($params['name']), isnumber($params['price']), isid($params['category_id']));
+        validate($params, './?controller=menu&action=new',
+          array('name'=>'必須', 'price'=>'無効な数字', 'category_id'=>'無効な値'));
 
         $this->model->create($params);
 
@@ -87,6 +91,7 @@ class MenuController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('menu', $menu);
         $this->view->assign('categories', $categories);
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=menu&action=new');
         $this->view->assign('button_name', 'メニュー追加');
 
@@ -102,7 +107,8 @@ class MenuController extends BaseController
         $params = $this->request->getPost();
 
         // バリデーション
-        validate(ispresent($params['name']), isnumber($params['price']), isid($params['category_id']), isid($params['menu_id']));
+        validate($params, './?controller=menu&action=edit&menu_id='.$params['menu_id'],
+          array('name'=>'必須', 'price'=>'無効な数字', 'category_id'=>'無効な値', 'menu_id'=>'無効な値'));
 
         $this->model->update($params);
 

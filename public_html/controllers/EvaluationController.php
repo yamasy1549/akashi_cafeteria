@@ -52,6 +52,7 @@ class EvaluationController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('menus', $menus);
         $this->view->assign('menu_id', $params['menu_id']);
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=evaluation&action=new');
         $this->view->assign('button_name', '評価追加');
 
@@ -67,7 +68,8 @@ class EvaluationController extends BaseController
         $params = $this->request->getPost();
 
         // バリデーション
-        validate(isnumber_data($params['data']), isid($params['menu_id']));
+        validate($params, './?controller=evaluation&action=new',
+          array('data'=>'範囲は1~5', 'menu_id'=>'無効な値'));
 
         $this->model->create($params);
 
@@ -90,6 +92,7 @@ class EvaluationController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('evaluation', $evaluation);
         $this->view->assign('menus', $menus);
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=evaluation&action=new');
         $this->view->assign('button_name', '評価追加');
 
@@ -105,7 +108,8 @@ class EvaluationController extends BaseController
         $params = $this->request->getPost();
 
         // バリデーション
-        validate(isnumber_data($params['data']), isid($params['menu_id']), isid($params['evaluation_id']));
+        validate($params, './?controller=evaluation&action=edit&evaluation_id='.$params['evaluation_id'],
+          array('data'=>'範囲は1~5', 'menu_id'=>'無効な値', 'evaluation_id'=>'無効な値'));
 
         $this->model->update($params);
 

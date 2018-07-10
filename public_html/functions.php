@@ -11,18 +11,52 @@ function h($str)
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 
-/**
- * バリデーションをまとめてチェックする関数
- *
- * @param boolean $params 検証したいバリデーション用関数（複数可能）
- */
-function validate(...$params)
-{
-    if (in_array(false, array_map('boolval', $params))) {
-        echo "error";
-    } else {
-        return true;
+function redirect_if($error_query, $redirect_url) {
+  if(strlen($error_query) > 0) {
+    header('Location: '.$redirect_url.$error_query);
+    exit();
+  }
+}
+
+function validate($params, $redirect_url, $validates) {
+  $error_query = '';
+
+  foreach($validates as $key => $message) {
+    switch($message) {
+    case '必須':
+      if(!ispresent($params[$key])) {
+        $error_query = $error_query.'&error['.$key.']='.$message;
+      }
+      break;
+    case '無効な値':
+      if(!isid($params[$key])) {
+        $error_query = $error_query.'&error['.$key.']='.$message;
+      }
+      break;
+    case '無効な数字':
+      if(!isnumber($params[$key])) {
+        $error_query = $error_query.'&error['.$key.']='.$message;
+      }
+      break;
+    case '範囲は1~5':
+      if(!isnumber_data($params[$key])) {
+        $error_query = $error_query.'&error['.$key.']='.$message;
+      }
+      break;
+    case '無効な年月日の形式':
+      if(!isdate($params[$key])) {
+        $error_query = $error_query.'&error['.$key.']='.$message;
+      }
+      break;
+    case '無効な選択':
+      if(!isbool($params[$key])) {
+        $error_query = $error_query.'&error['.$key.']='.$message;
+      }
+      break;
     }
+  }
+
+  redirect_if($error_query, $redirect_url);
 }
 
 /**

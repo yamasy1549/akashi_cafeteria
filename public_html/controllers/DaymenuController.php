@@ -44,11 +44,14 @@ class DaymenuController extends BaseController
      */
     public function newAction()
     {
+        $params = $this->request->getQuery();
+
         $menu_model = new Menu();
         $menus = $menu_model->getMenus();
 
         // テンプレートへ変数割り当て
         $this->view->assign('menus', $menus);
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=daymenu&action=new');
         $this->view->assign('button_name', '日毎メニュー追加');
 
@@ -64,7 +67,8 @@ class DaymenuController extends BaseController
         $params = $this->request->getPost();
 
         // バリデーション
-        validate(isdate($params['date']), isid($params['menu_id']), isbool($params['sale']));
+        validate($params, './?controller=daymenu&action=new',
+          array('date'=>'無効な日付の形式', 'menu_id'=>'無効な値', 'sale'=>'無効な選択'));
 
         $this->model->create($params);
 
@@ -87,6 +91,7 @@ class DaymenuController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('daymenu', $daymenu);
         $this->view->assign('menus', $menus);
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=daymenu&action=new');
         $this->view->assign('button_name', '日毎メニュー追加');
 
@@ -102,7 +107,8 @@ class DaymenuController extends BaseController
         $params = $this->request->getPost();
 
         // バリデーション
-        validate(isdate($params['date']), isid($params['menu_id']), isbool($params['sale']), isid($params['daymenu_id']));
+        validate($params, './?controller=daymenu&action=edit&daymenu_id='.$params['daymenu_id'],
+          array('date'=>'無効な日付の形式', 'menu_id'=>'無効な値', 'sale'=>'無効な選択', 'daymenu_id'=>'無効な値'));
 
         $this->model->update($params);
 

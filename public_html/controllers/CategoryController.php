@@ -38,7 +38,10 @@ class CategoryController extends BaseController
      */
     public function newAction()
     {
+        $params = $this->request->getQuery();
+
         // テンプレートへ変数割り当て
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=category&action=new');
         $this->view->assign('button_name', 'カテゴリ追加');
 
@@ -54,7 +57,7 @@ class CategoryController extends BaseController
         $params = $this->request->getPost();
 
         // バリデーション
-        validate(ispresent($params['name']));
+        validate($params, './?controller=category&action=new', array('name'=>'必須'));
 
         $this->model->create($params);
 
@@ -73,6 +76,7 @@ class CategoryController extends BaseController
 
         // テンプレートへ変数割り当て
         $this->view->assign('category', $category);
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=category&action=new');
         $this->view->assign('button_name', 'カテゴリ追加');
 
@@ -88,7 +92,8 @@ class CategoryController extends BaseController
         $params = $this->request->getPost();
 
         // バリデーション
-        validate(ispresent($params['name']), isid($params['category_id']));
+        validate($params, './?controller=category&action=edit&category_id='.$params['category_id'],
+          array('name'=>'必須', 'category_id'=>'無効な値'));
 
         $this->model->update($params);
 

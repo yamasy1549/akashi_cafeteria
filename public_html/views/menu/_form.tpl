@@ -2,6 +2,9 @@
 <p class='form__item'>
   <label class='form__item--label' for='name'>メニュー名</label>
   <input class='form__item--input' id='name' name='name' type='text' value='{h($menu.name)|default:""}'>
+  {if isset($error['name'])}
+    <span class='error'><i class='fas fa-exclamation-triangle'></i> {$error['name']}です<span>
+  {/if}
 </p>
 
 {* category_id *}
@@ -17,12 +20,18 @@
       {/if}
     {/foreach}
   </select>
+  {if isset($error['category_id'])}
+    <span class='error'><i class='fas fa-exclamation-triangle'></i> {$error['category_id']}です<span>
+  {/if}
 </p>
 
 {* price *}
 <p class='form__item'>
   <label class='form__item--label' for='price'>価格</label>
   <input class='form__item--input' id='price' name='price' type='number' value='{$menu.price|default:300}'>
+  {if isset($error['price'])}
+    <span class='error'><i class='fas fa-exclamation-triangle'></i> {$error['price']}です<span>
+  {/if}
 </p>
 
 {* image *}
