@@ -166,7 +166,7 @@ $ export $(cat .env) &&  php -S 127.0.0.1:8080 -t public_html
 $ ./bin/install_phpunit.sh
 
 # 実行時
-$ ./bin/phpunit test
+$ ./bin/phpunit tests
 ```
 
 ## コマンド一覧
