@@ -27,7 +27,6 @@ class CategoryController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('categories', $categories);
         $this->view->assign('button_action', 'controller=category&action=new');
-        $this->view->assign('button_name', 'カテゴリ追加');
 
         // テンプレート表示
         $this->view->display('./views/category/index.tpl');
@@ -38,9 +37,11 @@ class CategoryController extends BaseController
      */
     public function newAction()
     {
+        $params = $this->request->getQuery();
+
         // テンプレートへ変数割り当て
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=category&action=new');
-        $this->view->assign('button_name', 'カテゴリ追加');
 
         // テンプレート表示
         $this->view->display('./views/category/new.tpl');
@@ -52,6 +53,9 @@ class CategoryController extends BaseController
     public function createAction()
     {
         $params = $this->request->getPost();
+
+        // バリデーション
+        validate($params, './?controller=category&action=new', array('name'=>'必須'));
 
         $this->model->create($params);
 
@@ -70,8 +74,8 @@ class CategoryController extends BaseController
 
         // テンプレートへ変数割り当て
         $this->view->assign('category', $category);
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=category&action=new');
-        $this->view->assign('button_name', 'カテゴリ追加');
 
         // テンプレート表示
         $this->view->display('./views/category/edit.tpl');
@@ -83,6 +87,10 @@ class CategoryController extends BaseController
     public function updateAction()
     {
         $params = $this->request->getPost();
+
+        // バリデーション
+        validate($params, './?controller=category&action=edit&category_id='.$params['category_id'],
+          array('name'=>'必須', 'category_id'=>'無効な値'));
 
         $this->model->update($params);
 
@@ -102,7 +110,6 @@ class CategoryController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('category', $category);
         $this->view->assign('button_action', 'controller=category&action=new');
-        $this->view->assign('button_name', 'カテゴリ追加');
 
         // テンプレート表示
         $this->view->display('./views/category/delete.tpl');

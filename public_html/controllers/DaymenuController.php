@@ -33,7 +33,6 @@ class DaymenuController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('daymenus', $daymenus);
         $this->view->assign('button_action', 'controller=daymenu&action=new');
-        $this->view->assign('button_name', '日毎メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/daymenu/index.tpl');
@@ -44,13 +43,15 @@ class DaymenuController extends BaseController
      */
     public function newAction()
     {
+        $params = $this->request->getQuery();
+
         $menu_model = new Menu();
         $menus = $menu_model->getMenus();
 
         // テンプレートへ変数割り当て
         $this->view->assign('menus', $menus);
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=daymenu&action=new');
-        $this->view->assign('button_name', '日毎メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/daymenu/new.tpl');
@@ -62,6 +63,10 @@ class DaymenuController extends BaseController
     public function createAction()
     {
         $params = $this->request->getPost();
+
+        // バリデーション
+        validate($params, './?controller=daymenu&action=new',
+          array('date'=>'無効な日付の形式', 'menu_id'=>'無効な値', 'sale'=>'無効な選択'));
 
         $this->model->create($params);
 
@@ -84,8 +89,8 @@ class DaymenuController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('daymenu', $daymenu);
         $this->view->assign('menus', $menus);
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=daymenu&action=new');
-        $this->view->assign('button_name', '日毎メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/daymenu/edit.tpl');
@@ -97,6 +102,10 @@ class DaymenuController extends BaseController
     public function updateAction()
     {
         $params = $this->request->getPost();
+
+        // バリデーション
+        validate($params, './?controller=daymenu&action=edit&daymenu_id='.$params['daymenu_id'],
+          array('date'=>'無効な日付の形式', 'menu_id'=>'無効な値', 'sale'=>'無効な選択', 'daymenu_id'=>'無効な値'));
 
         $this->model->update($params);
 
@@ -116,7 +125,6 @@ class DaymenuController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('daymenu', $daymenu);
         $this->view->assign('button_action', 'controller=daymenu&action=new');
-        $this->view->assign('button_name', '日毎メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/daymenu/delete.tpl');

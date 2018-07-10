@@ -2,6 +2,7 @@
 
 require_once './Request.php';
 require_once './views/smarty/Smarty.class.php';
+require_once './functions.php';
 
 class BaseController
 {

@@ -2,6 +2,9 @@
 <p class='form__item'>
   <label class='form__item--label' for='name'>カテゴリ名</label>
   <input class='form__item--input' id='name' name='name' type='text' value='{h($category.name)|default:""}'>
+  {if isset($error['name'])}
+    <span class='error'><i class='fas fa-exclamation-triangle'></i> {$error['name']}です<span>
+  {/if}
 </p>
 
 {* category_id *}

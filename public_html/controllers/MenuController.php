@@ -33,7 +33,6 @@ class MenuController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('menus', $menus);
         $this->view->assign('button_action', 'controller=menu&action=new');
-        $this->view->assign('button_name', 'メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/menu/index.tpl');
@@ -44,13 +43,15 @@ class MenuController extends BaseController
      */
     public function newAction()
     {
+        $params = $this->request->getQuery();
+
         $category_model = new Category();
         $categories = $category_model->getCategories();
 
         // テンプレートへ変数割り当て
         $this->view->assign('categories', $categories);
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=menu&action=new');
-        $this->view->assign('button_name', 'メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/menu/new.tpl');
@@ -62,6 +63,10 @@ class MenuController extends BaseController
     public function createAction()
     {
         $params = $this->request->getPost();
+
+        // バリデーション
+        validate($params, './?controller=menu&action=new',
+          array('name'=>'必須', 'price'=>'無効な数字', 'category_id'=>'無効な値'));
 
         $this->model->create($params);
 
@@ -84,8 +89,8 @@ class MenuController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('menu', $menu);
         $this->view->assign('categories', $categories);
+        $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=menu&action=new');
-        $this->view->assign('button_name', 'メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/menu/edit.tpl');
@@ -97,6 +102,10 @@ class MenuController extends BaseController
     public function updateAction()
     {
         $params = $this->request->getPost();
+
+        // バリデーション
+        validate($params, './?controller=menu&action=edit&menu_id='.$params['menu_id'],
+          array('name'=>'必須', 'price'=>'無効な数字', 'category_id'=>'無効な値', 'menu_id'=>'無効な値'));
 
         $this->model->update($params);
 
@@ -116,7 +125,6 @@ class MenuController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('menu', $menu);
         $this->view->assign('button_action', 'controller=menu&action=new');
-        $this->view->assign('button_name', 'カテゴリ追加');
 
         // テンプレート表示
         $this->view->display('./views/menu/delete.tpl');

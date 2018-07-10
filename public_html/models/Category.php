@@ -51,9 +51,6 @@ class Category extends BaseModel
     */
     public function update($params)
     {
-        // バリデーション
-        validate(ispresent($params['name']), isid($params['category_id']));
-
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
         $sql = sprintf(
@@ -72,9 +69,6 @@ class Category extends BaseModel
     */
     public function create($params)
     {
-        // バリデーション
-        validate(ispresent($params['name']));
-
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
         $sql = sprintf(

@@ -62,9 +62,6 @@ class Daymenu extends BaseModel
     */
     public function update($params)
     {
-        // バリデーション
-        validate(isdate($params['date']), isid($params['menu_id']), isbool($params['sale']), isid($params['daymenu_id']));
-
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
         $sql = sprintf(
@@ -85,9 +82,6 @@ class Daymenu extends BaseModel
     */
     public function create($params)
     {
-        // バリデーション
-        validate(isdate($params['date']), isid($params['menu_id']), isbool($params['sale']));
-
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
         $sql = sprintf(

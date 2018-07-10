@@ -2,6 +2,9 @@
 <p class='form__item'>
   <label class='form__item--label' for='data'>評価（5段階）</label>
   <input class='form__item--input' id='data' name='data' type='number' value='{$evaluation.data|default:3}'>
+  {if isset($error['data'])}
+    <span class='error'><i class='fas fa-exclamation-triangle'></i> {$error['data']}です<span>
+  {/if}
 </p>
 
 {* menu_id *}
@@ -10,13 +13,16 @@
   <select class='form__item--select' id='menu_id' name='menu_id'>
     <option value=''>＜選択＞</option>
     {foreach from=$menus item=menu}
-      {if $menu.menu_id eq $evaluation.menu_id}
+      {if ($menu.menu_id eq $evaluation.menu_id) || ($menu.menu_id eq $menu_id)}
         <option value='{$menu.menu_id}' selected>{h($menu.name)}</option>
       {else}
         <option value='{$menu.menu_id}'>{h($menu.name)}</option>
       {/if}
     {/foreach}
   </select>
+  {if isset($error['menu_id'])}
+    <span class='error'><i class='fas fa-exclamation-triangle'></i> {$error['menu_id']}です<span>
+  {/if}
 </p>
 
 {* evaluation_id *}

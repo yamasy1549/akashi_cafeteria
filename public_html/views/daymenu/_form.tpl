@@ -2,6 +2,9 @@
 <p class='form__item'>
   <label class='form__item--label' for='date'>日付</label>
   <input class='form__item--input' id='date' name='date' type='date' value='{$daymenu.date|default:date("Y-m-d")}'>
+  {if isset($error['date'])}
+    <span class='error'><i class='fas fa-exclamation-triangle'></i> {$error['date']}です<span>
+  {/if}
 </p>
 
 {* menu_id *}
@@ -17,6 +20,9 @@
       {/if}
     {/foreach}
   </select>
+  {if isset($error['menu_id'])}
+    <span class='error'><i class='fas fa-exclamation-triangle'></i> {$error['menu_id']}です<span>
+  {/if}
 </p>
 
 {* sale *}
@@ -33,6 +39,9 @@
       <input id='sale1' type='radio' name='sale' value='1' {$sale1}><label for='sale1'>販売中</label>
       <input id='sale0' type='radio' name='sale' value='0' {$sale0}><label for='sale0'>売り切れ</label>
   </div>
+  {if isset($error['sale'])}
+    <span class='error'><i class='fas fa-exclamation-triangle'></i> {$error['sale']}です<span>
+  {/if}
 </p>
 
 {* daymenu_id *}
