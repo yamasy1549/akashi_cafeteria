@@ -20,5 +20,33 @@ class FunctionsTest extends TestCase {
    * isid
    */
   public function test_isid() {
+    //正常系
+    $this->assertEquals(true, isid("36"));
+    $this->assertEquals(true, isid("1"));
+    //異常系
+    $this->assertEquals(false, isid("02"));
+  }
+
+  public function test_isnumber_data() {
+    //正常系
+    $this->assertEquals(true, isnumber_data("12312"));
+    //異常系
+    $this->assertEquals(false, isnumber_data("あ"));
+  }
+
+  public function test_isdate() {
+    //正常系
+    $this->assertEquals(true, isdate("2018-07-10"));
+    $this->assertEquals(true, isdate("9999-99-99"));
+    //異常系
+    $this->assertEquals(false, isdate("1231221212121-121213424143545345-4534534534"));
+  }
+
+  public function test_isbool() {
+    //正常系
+    $this->assertEquals(true, isbool("0"));
+    $this->assertEquals(true, isbool("1"));
+    //異常系
+    $this->assertEquals(false, isbool("2"));
   }
 }
