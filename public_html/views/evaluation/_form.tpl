@@ -10,7 +10,7 @@
   <select class='form__item--select' id='menu_id' name='menu_id'>
     <option value=''>＜選択＞</option>
     {foreach from=$menus item=menu}
-      {if $menu.menu_id eq $evaluation.menu_id}
+      {if ($menu.menu_id eq $evaluation.menu_id) || ($menu.menu_id eq $menu_id)}
         <option value='{$menu.menu_id}' selected>{h($menu.name)}</option>
       {else}
         <option value='{$menu.menu_id}'>{h($menu.name)}</option>

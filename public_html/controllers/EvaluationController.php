@@ -44,11 +44,14 @@ class EvaluationController extends BaseController
      */
     public function newAction()
     {
+        $params = $this->request->getQuery();
+
         $menu_model = new Menu();
         $menus = $menu_model->getMenus();
 
         // テンプレートへ変数割り当て
         $this->view->assign('menus', $menus);
+        $this->view->assign('menu_id', $params['menu_id']);
         $this->view->assign('button_action', 'controller=evaluation&action=new');
         $this->view->assign('button_name', '評価追加');
 

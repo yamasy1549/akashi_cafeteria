@@ -29,6 +29,8 @@
             <div class='menu-list__item--category-name'>{h($daymenu.category_name)}</div>
             <div class='menu-list__item--name'>{h($daymenu.menu_name)}</div>
             <div class='menu-list__item--price'>¥{$daymenu.price}</div>
+          </a>
+          <a href='./?controller=evaluation&action=new&menu_id={$daymenu.menu_id}'>
             <div class='menu-list__item--stars'>
               {for $count=1 to $daymenu.data}
                  <i class='menu-list__item--star fas fa-star'></i>
