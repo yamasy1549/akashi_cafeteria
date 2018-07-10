@@ -53,6 +53,9 @@ class CategoryController extends BaseController
     {
         $params = $this->request->getPost();
 
+        // バリデーション
+        validate(ispresent($params['name']));
+
         $this->model->create($params);
 
         // カテゴリ一覧へリダイレクト
@@ -83,6 +86,9 @@ class CategoryController extends BaseController
     public function updateAction()
     {
         $params = $this->request->getPost();
+
+        // バリデーション
+        validate(ispresent($params['name']), isid($params['category_id']));
 
         $this->model->update($params);
 

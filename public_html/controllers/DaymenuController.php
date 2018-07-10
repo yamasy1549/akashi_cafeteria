@@ -63,6 +63,9 @@ class DaymenuController extends BaseController
     {
         $params = $this->request->getPost();
 
+        // バリデーション
+        validate(isdate($params['date']), isid($params['menu_id']), isbool($params['sale']));
+
         $this->model->create($params);
 
         // カテゴリ一覧へリダイレクト
@@ -97,6 +100,9 @@ class DaymenuController extends BaseController
     public function updateAction()
     {
         $params = $this->request->getPost();
+
+        // バリデーション
+        validate(isdate($params['date']), isid($params['menu_id']), isbool($params['sale']), isid($params['daymenu_id']));
 
         $this->model->update($params);
 

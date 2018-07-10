@@ -63,6 +63,9 @@ class MenuController extends BaseController
     {
         $params = $this->request->getPost();
 
+        // バリデーション
+        validate(ispresent($params['name']), isnumber($params['price']), isid($params['category_id']));
+
         $this->model->create($params);
 
         // カテゴリ一覧へリダイレクト
@@ -97,6 +100,9 @@ class MenuController extends BaseController
     public function updateAction()
     {
         $params = $this->request->getPost();
+
+        // バリデーション
+        validate(ispresent($params['name']), isnumber($params['price']), isid($params['category_id']), isid($params['menu_id']));
 
         $this->model->update($params);
 

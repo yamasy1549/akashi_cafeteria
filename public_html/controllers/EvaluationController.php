@@ -63,6 +63,9 @@ class EvaluationController extends BaseController
     {
         $params = $this->request->getPost();
 
+        // バリデーション
+        validate(isnumber_data($params['data']), isid($params['menu_id']));
+
         $this->model->create($params);
 
         // カテゴリ一覧へリダイレクト
@@ -97,6 +100,9 @@ class EvaluationController extends BaseController
     public function updateAction()
     {
         $params = $this->request->getPost();
+
+        // バリデーション
+        validate(isnumber_data($params['data']), isid($params['menu_id']), isid($params['evaluation_id']));
 
         $this->model->update($params);
 
