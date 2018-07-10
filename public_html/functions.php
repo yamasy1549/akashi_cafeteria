@@ -103,7 +103,7 @@ function isnumber($str)
  */
 function isnumber_data($str)
 {
-    return preg_match("/^[1-5]+$/", $str);
+    return preg_match("/^[1-5]$/", $str);
 }
 
 

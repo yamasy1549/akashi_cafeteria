@@ -29,8 +29,11 @@ class FunctionsTest extends TestCase {
 
   public function test_isnumber_data() {
     //正常系
-    $this->assertEquals(true, isnumber_data("12312"));
+    $this->assertEquals(true, isnumber_data("1"));
+    $this->assertEquals(true, isnumber_data("4"));
     //異常系
+    $this->assertEquals(false, isnumber_data("-1"));
+    $this->assertEquals(false, isnumber_data("6"));
     $this->assertEquals(false, isnumber_data("あ"));
   }
 
