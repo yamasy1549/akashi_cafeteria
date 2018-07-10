@@ -1,29 +1,3 @@
-/*
-  - enum
-    - role
-  - table
-    - user
-    - evaluation
-    - category
-    - menu
-    - daymenu
-*/
-
-create type role as enum (
-    '評価者',
-    '管理者'
-);
-
-/* userは予約語なのでダブルクォーテーションが必要みたい */
-/* TODO; コマンドラインで確認する */
-
-create table "user" (
-    user_id     serial primary key,
-    email       text not null,
-    password    text not null,
-    role        role not null
-);
-
 create table category (
     category_id serial primary key,
     name        text not null
@@ -39,7 +13,6 @@ create table menu (
 
 create table evaluation (
     evaluation_id    serial primary key,
-    user_id          integer references "user"(user_id) on delete cascade not null,
     menu_id          integer references menu(menu_id) on delete cascade not null,
     data             integer not null
 );

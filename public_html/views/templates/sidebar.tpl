@@ -41,14 +41,5 @@
         <i class='sidebar-list__item--mark fas fa-caret-left'></i>
       {/if}
     </li>
-    <li class='sidebar-list__item'>
-      <a href='./?controller=user&action=index' class='sidebar-list__item-wrapper'>
-        <i class='sidebar-list__item--icon fas fa-user'></i>
-        <span class='sidebar-list__item--text'>USER</span>
-      </a>
-      {if $title eq 'ユーザ'}
-        <i class='sidebar-list__item--mark fas fa-caret-left'></i>
-      {/if}
-    </li>
   </ol>
 </menu>

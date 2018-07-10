@@ -23,9 +23,8 @@ class Evaluation extends BaseModel
         // TODO: エラーハンドリング
         $sql = sprintf(
           'select '.
-          'evaluation.evaluation_id, evaluation.data, menu.menu_id, menu.name as menu_name, "user".user_id, "user".email '.
-          'from (%s inner join "user" using (user_id)) '.
-          'inner join menu using (menu_id) '.
+          'evaluation.evaluation_id, evaluation.data, menu.menu_id, menu.name as menu_name '.
+          'from %s inner join menu using (menu_id) '.
           'order by menu_id asc',
           $this->model_name
         );
@@ -44,9 +43,8 @@ class Evaluation extends BaseModel
         // TODO: エラーハンドリング
         $sql = sprintf(
           'select '.
-          'evaluation.evaluation_id, evaluation.data, menu.menu_id, menu.name as menu_name, "user".user_id, "user".email '.
-          'from (%s inner join "user" using (user_id)) '.
-          'inner join menu using (menu_id) '.
+          'evaluation.evaluation_id, evaluation.data, menu.menu_id, menu.name as menu_name '.
+          'from %s inner join menu using (menu_id) '.
           'where evaluation_id = %d',
           $this->model_name,
           $evaluation_id
@@ -85,18 +83,16 @@ class Evaluation extends BaseModel
     public function create($params)
     {
         // バリデーション
-        validate(isnumber_data($params['data']), isid($params['menu_id']), isid($params['user_id']));
+        validate(isnumber_data($params['data']), isid($params['menu_id']));
 
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
         $sql = sprintf(
           'insert into %s '.
-          '(data, menu_id, user_id) values (%d, %d, %d)',
+          '(data, menu_id) values (%d, %d)',
           $this->model_name,
           $params['data'],
-            $params['menu_id'],
-            $params['user_id']
-        );
+          $params['menu_id']);
         $res = $this->db->query($sql);
     }
 

@@ -19,9 +19,6 @@
           {/for}
         </div>
       </a>
-      <a href='./?controller=user&action=edit&user_id={$evaluation.user_id}'>
-        <span class='table-list__item--name'>{$evaluation.email}</span>
-      </a>
       <a class='table-list__item--edit' href='./?controller=evaluation&action=edit&evaluation_id={$evaluation.evaluation_id}'><i class='fas fa-pencil-alt'></i></a>
       <a class='table-list__item--destroy' href='./?controller=evaluation&action=delete&evaluation_id={$evaluation.evaluation_id}'><i class='fas fa-trash-alt'></i></a>
     </li>
