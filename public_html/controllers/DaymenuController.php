@@ -33,7 +33,6 @@ class DaymenuController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('daymenus', $daymenus);
         $this->view->assign('button_action', 'controller=daymenu&action=new');
-        $this->view->assign('button_name', '日毎メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/daymenu/index.tpl');
@@ -53,7 +52,6 @@ class DaymenuController extends BaseController
         $this->view->assign('menus', $menus);
         $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=daymenu&action=new');
-        $this->view->assign('button_name', '日毎メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/daymenu/new.tpl');
@@ -93,7 +91,6 @@ class DaymenuController extends BaseController
         $this->view->assign('menus', $menus);
         $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=daymenu&action=new');
-        $this->view->assign('button_name', '日毎メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/daymenu/edit.tpl');
@@ -128,7 +125,6 @@ class DaymenuController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('daymenu', $daymenu);
         $this->view->assign('button_action', 'controller=daymenu&action=new');
-        $this->view->assign('button_name', '日毎メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/daymenu/delete.tpl');

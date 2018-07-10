@@ -33,7 +33,6 @@ class MenuController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('menus', $menus);
         $this->view->assign('button_action', 'controller=menu&action=new');
-        $this->view->assign('button_name', 'メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/menu/index.tpl');
@@ -53,7 +52,6 @@ class MenuController extends BaseController
         $this->view->assign('categories', $categories);
         $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=menu&action=new');
-        $this->view->assign('button_name', 'メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/menu/new.tpl');
@@ -93,7 +91,6 @@ class MenuController extends BaseController
         $this->view->assign('categories', $categories);
         $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=menu&action=new');
-        $this->view->assign('button_name', 'メニュー追加');
 
         // テンプレート表示
         $this->view->display('./views/menu/edit.tpl');
@@ -128,7 +125,6 @@ class MenuController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('menu', $menu);
         $this->view->assign('button_action', 'controller=menu&action=new');
-        $this->view->assign('button_name', 'カテゴリ追加');
 
         // テンプレート表示
         $this->view->display('./views/menu/delete.tpl');

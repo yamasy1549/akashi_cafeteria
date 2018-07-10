@@ -27,7 +27,6 @@ class CategoryController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('categories', $categories);
         $this->view->assign('button_action', 'controller=category&action=new');
-        $this->view->assign('button_name', 'カテゴリ追加');
 
         // テンプレート表示
         $this->view->display('./views/category/index.tpl');
@@ -43,7 +42,6 @@ class CategoryController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=category&action=new');
-        $this->view->assign('button_name', 'カテゴリ追加');
 
         // テンプレート表示
         $this->view->display('./views/category/new.tpl');
@@ -78,7 +76,6 @@ class CategoryController extends BaseController
         $this->view->assign('category', $category);
         $this->view->assign('error', $params['error']);
         $this->view->assign('button_action', 'controller=category&action=new');
-        $this->view->assign('button_name', 'カテゴリ追加');
 
         // テンプレート表示
         $this->view->display('./views/category/edit.tpl');
@@ -113,7 +110,6 @@ class CategoryController extends BaseController
         // テンプレートへ変数割り当て
         $this->view->assign('category', $category);
         $this->view->assign('button_action', 'controller=category&action=new');
-        $this->view->assign('button_name', 'カテゴリ追加');
 
         // テンプレート表示
         $this->view->display('./views/category/delete.tpl');
