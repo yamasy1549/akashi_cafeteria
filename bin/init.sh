@@ -12,3 +12,5 @@ sed -i -e "s/\$_ENV\['DB_PASS'\]/'$(echo $DB_PASS)'/g" public_html/models/BaseMo
 
 sed -i -e "s/\.\.\/images/\.\/images/g" public_html/views/daymenu/index.tpl
 sed -i -e "s/\.\.\/images/\.\/images/g" public_html/views/menu/index.tpl
+
+sed -i -e "s/\.\.\/\.\.\/styles/styles/g" public_html/views/templates/header.tpl
