@@ -83,10 +83,10 @@ class Dispatcher
     private function getClassName($params)
     {
         // デフォルトではDaymenuController
-        $controller = "daymenu";
+        $controller = 'daymenu';
 
         // パラメータの1番目がController
-        if (0 < count($params) && $params[0] == "controller") {
+        if (0 < count($params) && $params[0] == 'controller') {
             $controller = $params[1];
         }
 
@@ -107,10 +107,10 @@ class Dispatcher
     private function getActionMethod($params)
     {
         // デフォルトではindexAction
-        $action = "index";
+        $action = 'index';
 
         // パラメータの3番目がAction
-        if (0 < count($params) && $params[2] == "action") {
+        if (0 < count($params) && $params[2] == 'action') {
             $action = $params[3];
         }
 
