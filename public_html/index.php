@@ -1,7 +1,7 @@
 <?php
 
-// エラーを表示
-ini_set('display_errors', 1);
+// エラーを非表示
+ini_set('display_errors', 0);
 
 // JavaScriptからクッキーを読み込まれないようにする
 ini_set('session.cookie_httponly', true);

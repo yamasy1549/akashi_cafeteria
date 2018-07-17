@@ -7,8 +7,6 @@ require_once './models/BaseModel.php';
  */
 class Daymenu extends BaseModel
 {
-    private $model_name = 'daymenu';
-
     public function __construct()
     {
         parent::__construct();
@@ -19,17 +17,13 @@ class Daymenu extends BaseModel
     */
     public function getDaymenus()
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'select '.
+        $sql = 'select '.
           'daymenu_id, menu_id, date, sale, menu.name as menu_name, price, image, category.name as category_name, avg(data) as data '.
-          'from (%s inner join menu using (menu_id)) inner join category using (category_id) '.
+          'from (daymenu inner join menu using (menu_id)) inner join category using (category_id) '.
           'left join evaluation using (menu_id) '.
           'group by daymenu_id, menu_id, date, sale, menu.name, price, image, category.name '.
-          'order by date, menu_id asc',
-          $this->model_name
-        );
+          'order by date, menu_id asc';
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
 
@@ -41,17 +35,14 @@ class Daymenu extends BaseModel
     */
     public function getDaymenu($daymenu_id)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'select '.
+        $sql = 'select '.
           'daymenu_id, menu_id, date, sale, menu.name as menu_name, price, image, category.name as category_name '.
-          'from (%s inner join menu using (menu_id)) inner join category using (category_id) '.
-          'where daymenu_id = %d',
-          $this->model_name,
-          $daymenu_id
-        );
-        $stmt = $this->db->query($sql);
+          'from (daymenu inner join menu using (menu_id)) inner join category using (category_id) '.
+          'where daymenu_id = :daymenu_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':daymenu_id', (int)$daymenu_id, PDO::PARAM_INT);
+        $stmt->execute();
         $result = $stmt->fetch();
 
         return $result;
@@ -62,19 +53,16 @@ class Daymenu extends BaseModel
     */
     public function update($params)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'update %s '.
-          "set date = '%s', menu_id = %d, sale = '%s' ".
-          'where daymenu_id = %d',
-          $this->model_name,
-          $params['date'],
-            $params['menu_id'],
-            $params['sale'] ? 'true' : 'false',
-            $params['daymenu_id']
-        );
-        $res = $this->db->query($sql);
+        $sql = 'update daymenu '.
+          'set date = :date, menu_id = :menu_id, sale = :sale '.
+          'where daymenu_id = :daymenu_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':date', $params['date'], PDO::PARAM_STR);
+        $stmt->bindValue(':menu_id', (int)$params['menu_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':sale', $params['sale'] ? 'true' : 'false', PDO::PARAM_STR);
+        $stmt->bindValue(':daymenu_id', (int)$params['daymenu_id'], PDO::PARAM_INT);
+        $stmt->execute();
     }
 
     /**
@@ -82,17 +70,14 @@ class Daymenu extends BaseModel
     */
     public function create($params)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'insert into %s '.
-          "(date, menu_id, sale) values ('%s', %d, '%s')",
-          $this->model_name,
-          $params['date'],
-            $params['menu_id'],
-            $params['sale'] ? 'true' : 'false'
-        );
-        $res = $this->db->query($sql);
+        $sql = 'insert into daymenu '.
+          '(date, menu_id, sale) values (:date, :menu_id, :sale)';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':date', $params['date'], PDO::PARAM_STR);
+        $stmt->bindValue(':menu_id', (int)$params['menu_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':sale', $params['sale'] ? 'true' : 'false', PDO::PARAM_STR);
+        $stmt->execute();
     }
 
     /**
@@ -100,9 +85,10 @@ class Daymenu extends BaseModel
     */
     public function destroy($params)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf('delete from %s where daymenu_id = %s', $this->model_name, $params['daymenu_id']);
-        $res = $this->db->query($sql);
+        $sql = 'delete from daymenu where daymenu_id = :daymenu_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':daymenu_id', (int)$params['daymenu_id'], PDO::PARAM_INT);
+        $stmt->execute();
     }
 }

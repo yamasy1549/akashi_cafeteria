@@ -59,6 +59,22 @@ class Dispatcher
     }
 
     /**
+     * ディレクトリトラバーサル対策
+     *
+     * @param string $str ディレクトリトラバーサルする可能性のある入力文字列
+     * @return string $safe_str ヌル文字を除いた文字列
+     */
+    private function checkDirTraversal($str)
+    {
+        if (strpos($str, '..') !== false) {
+          die('相対パスは指定できません');
+        }
+        $safe_str = str_replace('\0', '', $str);
+
+        return $safe_str;
+    }
+
+    /**
      * パラメータからControllerを特定
      *
      * @param string $params リクエストのパラメータ
@@ -67,13 +83,16 @@ class Dispatcher
     private function getClassName($params)
     {
         // デフォルトではDaymenuController
-        $controller = "daymenu";
+        $controller = 'daymenu';
 
         // パラメータの1番目がController
-        if (0 < count($params) && $params[0] == "controller") {
+        if (0 < count($params) && $params[0] == 'controller') {
             $controller = $params[1];
         }
 
+        $controller = $this->checkDirTraversal($controller);
+
+        // 先頭大文字でコントローラ名指定
         $className = ucfirst(strtolower($controller)) . 'Controller';
 
         return $className;
@@ -88,14 +107,17 @@ class Dispatcher
     private function getActionMethod($params)
     {
         // デフォルトではindexAction
-        $action = "index";
+        $action = 'index';
 
         // パラメータの3番目がAction
-        if (0 < count($params) && $params[2] == "action") {
+        if (0 < count($params) && $params[2] == 'action') {
             $action = $params[3];
         }
 
-        $actionMethod = $action . 'Action';
+        $action = $this->checkDirTraversal($action);
+
+        // アクション名指定
+        $actionMethod = strtolower($action) . 'Action';
 
         return $actionMethod;
     }

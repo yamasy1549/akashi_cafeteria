@@ -7,8 +7,6 @@ require_once './models/BaseModel.php';
  */
 class Category extends BaseModel
 {
-    private $model_name = 'category';
-
     public function __construct()
     {
         parent::__construct();
@@ -19,13 +17,8 @@ class Category extends BaseModel
     */
     public function getCategories()
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'select * from %s '.
-          'order by category_id asc',
-          $this->model_name
-        );
+        $sql = 'select * from category order by category_id asc';
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
 
@@ -37,10 +30,11 @@ class Category extends BaseModel
     */
     public function getCategory($category_id)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf('select * from %s where category_id = %s', $this->model_name, $category_id);
-        $stmt = $this->db->query($sql);
+        $sql = 'select * from category where category_id = :category_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':category_id', (int)$category_id, PDO::PARAM_INT);
+        $stmt->execute();
         $result = $stmt->fetch();
 
         return $result;
@@ -51,17 +45,12 @@ class Category extends BaseModel
     */
     public function update($params)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'update %s '.
-          "set name = '%s' ".
-          'where category_id = %d',
-          $this->model_name,
-          $params['name'],
-          $params['category_id']
-        );
-        $res = $this->db->query($sql);
+        $sql = 'update category set name = :name where category_id = :category_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':name', $params['name'], PDO::PARAM_STR);
+        $stmt->bindValue(':category_id', (int)$params['category_id'], PDO::PARAM_INT);
+        $stmt->execute();
     }
 
     /**
@@ -69,15 +58,11 @@ class Category extends BaseModel
     */
     public function create($params)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'insert into %s (name) '.
-          "values ('%s')",
-          $this->model_name,
-          $params['name']
-        );
-        $res = $this->db->query($sql);
+        $sql = 'insert into category (name) values (:name)';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':name', $params['name'], PDO::PARAM_STR);
+        $stmt->execute();
     }
 
     /**
@@ -85,9 +70,10 @@ class Category extends BaseModel
     */
     public function destroy($params)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf('delete from %s where category_id = %s', $this->model_name, $params['category_id']);
-        $res = $this->db->query($sql);
+        $sql = 'delete from category where category_id = :category_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':category_id', (int)$params['category_id'], PDO::PARAM_INT);
+        $stmt->execute();
     }
 }

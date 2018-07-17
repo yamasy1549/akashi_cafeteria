@@ -7,8 +7,6 @@ require_once './models/BaseModel.php';
  */
 class Menu extends BaseModel
 {
-    private $model_name = 'menu';
-
     public function __construct()
     {
         parent::__construct();
@@ -19,15 +17,11 @@ class Menu extends BaseModel
     */
     public function getMenus()
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'select '.
+        $sql = 'select '.
           'menu_id, menu.name as name, menu.price as price, menu.image as image, category.category_id, category.name as category_name '.
-          'from category inner join %s using (category_id) '.
-          'order by menu_id asc',
-          $this->model_name
-        );
+          'from category inner join menu using (category_id) '.
+          'order by menu_id asc';
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
 
@@ -39,17 +33,14 @@ class Menu extends BaseModel
     */
     public function getMenu($menu_id)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'select '.
+        $sql = 'select '.
           'menu_id, menu.name as name, menu.price as price, menu.image as image, category.category_id, category.name as category_name '.
-          'from category inner join %s using (category_id)'.
-          'where menu_id = %s',
-          $this->model_name,
-            $menu_id
-        );
-        $stmt = $this->db->query($sql);
+          'from category inner join menu using (category_id)'.
+          'where menu_id = :menu_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':menu_id', (int)$menu_id, PDO::PARAM_INT);
+        $stmt->execute();
         $result = $stmt->fetch();
 
         return $result;
@@ -60,20 +51,17 @@ class Menu extends BaseModel
     */
     public function update($params)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'update %s '.
-          "set name = '%s', price = %d, image = '%s', category_id = %d ".
-          'where menu_id = %s',
-          $this->model_name,
-          $params['name'],
-            $params['price'],
-            $params['image'],
-            $params['category_id'],
-          $params['menu_id']
-        );
-        $res = $this->db->query($sql);
+        $sql = 'update menu '.
+          'set name = :name, price = :price, image = :image, category_id = :category_id '.
+          'where menu_id = :menu_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':name', $params['name'], PDO::PARAM_STR);
+        $stmt->bindValue(':price', (int)$params['price'], PDO::PARAM_INT);
+        $stmt->bindValue(':image', $params['image'], PDO::PARAM_STR);
+        $stmt->bindValue(':category_id', (int)$params['category_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':menu_id', (int)$params['menu_id'], PDO::PARAM_INT);
+        $stmt->execute();
     }
 
     /**
@@ -81,18 +69,15 @@ class Menu extends BaseModel
     */
     public function create($params)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'insert into %s (name, price, image, category_id) '.
-          "values ('%s', %d, '%s', %d)",
-          $this->model_name,
-            $params['name'],
-            $params['price'],
-            $params['imege'],
-            $params['category_id']
-        );
-        $res = $this->db->query($sql);
+        $sql = 'insert into menu (name, price, image, category_id) '.
+          'values (:name, :price, :image, :category_id)';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':name', $params['name'], PDO::PARAM_STR);
+        $stmt->bindValue(':price', (int)$params['price'], PDO::PARAM_INT);
+        $stmt->bindValue(':image', $params['image'], PDO::PARAM_STR);
+        $stmt->bindValue(':category_id', (int)$params['category_id'], PDO::PARAM_INT);
+        $stmt->execute();
     }
 
     /**
@@ -100,9 +85,10 @@ class Menu extends BaseModel
     */
     public function destroy($params)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf('delete from %s where menu_id = %s', $this->model_name, $params['menu_id']);
-        $res = $this->db->query($sql);
+        $sql = 'delete from menu where menu_id = :menu_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':menu_id', (int)$params['menu_id'], PDO::PARAM_INT);
+        $stmt->execute();
     }
 }
