@@ -7,8 +7,6 @@ require_once './models/BaseModel.php';
  */
 class Evaluation extends BaseModel
 {
-    private $model_name = 'evaluation';
-
     public function __construct()
     {
         parent::__construct();
@@ -21,13 +19,10 @@ class Evaluation extends BaseModel
     {
         // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'select '.
+        $sql = 'select '.
           'evaluation.evaluation_id, evaluation.data, menu.menu_id, menu.name as menu_name '.
-          'from %s inner join menu using (menu_id) '.
-          'order by menu_id asc',
-          $this->model_name
-        );
+          'from evaluation inner join menu using (menu_id) '.
+          'order by menu_id asc';
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
 
@@ -39,17 +34,14 @@ class Evaluation extends BaseModel
     */
     public function getEvaluation($evaluation_id)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'select '.
+        $sql = 'select '.
           'evaluation.evaluation_id, evaluation.data, menu.menu_id, menu.name as menu_name '.
-          'from %s inner join menu using (menu_id) '.
-          'where evaluation_id = %d',
-          $this->model_name,
-          $evaluation_id
-        );
-        $stmt = $this->db->query($sql);
+          'from evaluation inner join menu using (menu_id) '.
+          'where evaluation_id = :evaluation_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':evaluation_id', (int)$evaluation_id, PDO::PARAM_INT);
+        $stmt->execute();
         $result = $stmt->fetch();
 
         return $result;
@@ -60,18 +52,15 @@ class Evaluation extends BaseModel
     */
     public function update($params)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'update %s '.
-          'set data = %d, menu_id = %d '.
-          'where evaluation_id = %d',
-          $this->model_name,
-          $params['data'],
-            $params['menu_id'],
-          $params['evaluation_id']
-        );
-        $res = $this->db->query($sql);
+        $sql = 'update evaluation '.
+          'set data = :data, menu_id = :menu_id '.
+          'where evaluation_id = :evaluation_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':data', (int)$params['data'], PDO::PARAM_INT);
+        $stmt->bindValue(':menu_id', (int)$params['menu_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':evaluation_id', (int)$params['evaluation_id'], PDO::PARAM_INT);
+        $stmt->execute();
     }
 
     /**
@@ -79,15 +68,13 @@ class Evaluation extends BaseModel
     */
     public function create($params)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf(
-          'insert into %s '.
-          '(data, menu_id) values (%d, %d)',
-          $this->model_name,
-          $params['data'],
-          $params['menu_id']);
-        $res = $this->db->query($sql);
+        $sql = 'insert into evaluation '.
+          '(data, menu_id) values (:data, :menu_id)';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':data', (int)$params['data'], PDO::PARAM_INT);
+        $stmt->bindValue(':menu_id', (int)$params['menu_id'], PDO::PARAM_INT);
+        $stmt->execute();
     }
 
     /**
@@ -95,9 +82,10 @@ class Evaluation extends BaseModel
     */
     public function destroy($params)
     {
-        // TODO: セキュリティ対策
         // TODO: エラーハンドリング
-        $sql = sprintf('delete from %s where evaluation_id = %s', $this->model_name, $params['evaluation_id']);
-        $res = $this->db->query($sql);
+        $sql = 'delete from evaluation where evaluation_id = :evaluation_id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':evaluation_id', (int)$params['evaluation_id'], PDO::PARAM_INT);
+        $stmt->execute();
     }
 }
